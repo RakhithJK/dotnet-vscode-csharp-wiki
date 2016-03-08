@@ -1,5 +1,5 @@
 ## Summary
-.NET Core introduces a new symbol file (PDB) format - portable PDBs. Unlike traditional PDBs which are Windows-only, portable PDBs can be created and read on all platforms. The new .NET Core debugger for Visual Studio Code only supports this new portable format. Portable PDBs can be [generated](#how-to-generate-portable-pdbs) both from [C# VS projects (.csproj)](#csproj) and the new [.NET CLI-based project.json projects](#net-cli-projects-projectjson).
+.NET Core introduces a new symbol file (PDB) format - portable PDBs. Unlike traditional PDBs which are Windows-only, portable PDBs can be created and read on all platforms. The new .NET Core debugger for Visual Studio Code only supports this new portable format. Portable PDBs can be generated both from [C# VS projects (.csproj)](#csproj) and the new [.NET CLI-based project.json projects](#net-cli-projects-projectjson).
 
 ## How to Generate Portable PDBs
 ### .csproj
@@ -17,13 +17,13 @@ In Visual Studio 2015 Update 2 builds, this can be done from the UI by following
 **NOTE**: For legacy reasons, the C# compiler option (and hence the name of the msbuild/project.json flags) to generate Windows PDBs is 'full'. However, this should NOT imply that Windows-only PDBs have more information than Portable PDBs. 
 
 ###.NET CLI projects (project.json)
-The following option can be used project.json in force the use of portable PDBs --
+The following option can be used in project.json to force the use of portable PDBs. This is currently not necessary when building on OSX/Linux, but is on Windows. In the future we expect to unite all the platforms, but we aren't there quite yet --
 
     "compilationOptions": {
         "debugType": "portable"
     },
 
-NOTE that for this to work, you need to be on a newer version of the .NET CLI than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). In our testing https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
+NOTE that for this to work, you need to be on a newer version of the .NET CLI than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). On Windows, in our testing, https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
   
 ## Supported scenarios
 Today, neither portable PDBs nor Windows PDBs are supported everywhere. So you need to consider where your project will want to be used (or at least debugged) to decide which format to use.
@@ -38,6 +38,8 @@ Portable PDBs can be read on any operating system, but there are a number of pla
 * Profiling tools
 * Running any post-compilation build step that consumes or modifies the PDB, such as CCI based tools (CodeContracts) or the .Net Native compiler
 * Using .Net decompilers such as ildasm or .Net reflector and expecting to see source line mappings or local parameter names
+
+If you have a project that you want to be able to use and debug in both formats, you can use different build configurations and build the project twice to have it both ways.
 
 ## What is a PDB?
 For anyone not familiar, a PDB file is an auxiliary file produced by a compiler to provide other tools, especially debuggers, information about what is in the main executable file and how it was produced. For example, a PDB is how a debugger can map foo.cs line 12 to the right executable location so that it can set a breakpoint, and how it maps back from some other executable location to its associated source line.
