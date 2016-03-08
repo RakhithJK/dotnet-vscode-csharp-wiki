@@ -23,7 +23,8 @@ The following option can be used in project.json to force the use of portable PD
         "debugType": "portable"
     },
 
-NOTE that for this to work, you need to be on a newer version of the .NET CLI than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). On Windows, in our testing, https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
+### Downloading a .NET CLI which supports 'debugType' option
+Support for the 'debugType' option is project.json is very new. Newer than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). On Windows, in our testing, https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
   
 ## Supported scenarios
 Today, neither portable PDBs nor Windows PDBs are supported everywhere. So you need to consider where your project will want to be used (or at least debugged) to decide which format to use.
