@@ -35,7 +35,7 @@ To unblock it:
 
 1. Open the folder where the installer was downloaded to (ex: c:\users\me\downloads)
 2. Right click on the file and bring up properties.
-3. Click the 'Unblock' icon
+3. Click the 'Unblock' checkbox
 
 ![Unblock button](https://raw.githubusercontent.com/wiki/OmniSharp/omnisharp-vscode/images/unblock-windows-program.jpg)
   
