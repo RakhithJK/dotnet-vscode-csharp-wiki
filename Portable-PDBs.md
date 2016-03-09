@@ -7,13 +7,6 @@ If you are using a .csproj to compile your C# code, you need to upgrade to Visua
 
         <DebugType>portable</DebugType>
 
-In Visual Studio 2015 Update 2 builds, this can be done from the UI by following these steps:
-
-1. Right click on the project, and go to project properties
-2. Switch to the Build tab
-3. Click the 'Advanced' button
-4. Change the 'Debug info' format from 'full' to 'portable'
-
 **NOTE**: For legacy reasons, the C# compiler option (and hence the name of the msbuild/project.json flags) to generate Windows PDBs is 'full'. However, this should NOT imply that Windows-only PDBs have more information than Portable PDBs. 
 
 ###.NET CLI projects (project.json)
