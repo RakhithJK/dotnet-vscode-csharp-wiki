@@ -40,7 +40,7 @@ Portable PDBs can be read on any operating system, but there are a number of pla
 * Older version of the Visual Studio debugger (versions before VS 2015 Update 2)
 * Edit-and-continue in Visual Studio
 * Code inside the .NET Framework that prints stack traces with mappings back to line numbers (such as in an ASP.NET error page)
-* C# Code analysis (aka FxCop)
+* C# Code analysis (aka FxCop), note that this doesn't apply to Roslyn Analyzer
 * Symbol server (ex: SymbolsSource.org)
 * Profiling tools
 * Running any post-compilation build step that consumes or modifies the PDB, such as CCI based tools (CodeContracts) or the .Net Native compiler
