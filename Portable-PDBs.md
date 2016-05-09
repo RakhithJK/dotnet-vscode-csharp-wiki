@@ -14,12 +14,14 @@ If you are using a .csproj to compile your C# code, you need to upgrade to Visua
 ###.NET CLI projects (project.json)
 The following option can be used in project.json to force the use of portable PDBs. This is currently not necessary when building on OSX/Linux, but is on Windows. In the future we expect to unite all the platforms, but we aren't there quite yet --
 
-    "compilationOptions": {
+    "buildOptions": {
         "debugType": "portable"
     },
 
+If you are using a build before ~2600, 'buildOptions' was called 'compilationOptions'.
+
 ### Downloading a .NET CLI which supports 'debugType' option
-Support for the 'debugType' option is project.json is very new. Newer than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). On Windows, in our testing, https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
+Support for the 'debugType' option is project.json is newer than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). On Windows, in our testing, https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
 
 ##### Unblocking the installer
 The CI builds of the .NET CLI are not signed, which can cause Windows Defender or other antivirus software to try and prevent you from running it. For example, Microsoft edge will put up this dialog:
