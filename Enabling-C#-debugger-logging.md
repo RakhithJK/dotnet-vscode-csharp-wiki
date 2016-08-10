@@ -1,5 +1,24 @@
 Here is how to enable additional logging for the VS Code C# debugger to help troubleshoot problems.
 
+## Quick method
+The quick way to enable logging is to modify your .vscode/launch.json file and add a new 'logging' entry into your active configuration. This works in all cases except problems that happen very early in the initialization stage of the debugger. Here is an example of the new sections to add to launch.json:
+
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                 ...,
+                 "logging": {
+                     "trace": true,
+                     "traceResponse": true,
+                     "engineLogging": true
+                 }
+
+When this is enabled, logging will be sent to the VS Code Debug Console where you can copy/paste the relevant sections.
+
+## Full method
+If you are dealing with a problem that happens either very early on during debugger startup, or you want to gather complete logs, it is also possible to send logging output to a file. Though this method requires a bit more work. Here are the steps.
+
 #### 1: Open package.json
 Fire up your favorite editor and open the C# extension's package.json file. You might want to use something other than VS Code so that you can restart VS Code without having to close this file, but it isn't required. Package.json can be found here:
 
