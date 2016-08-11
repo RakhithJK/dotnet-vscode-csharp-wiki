@@ -3,16 +3,18 @@ Here is how to enable additional logging for the VS Code C# debugger to help tro
 ## Quick method
 The quick way to enable logging is to modify your .vscode/launch.json file and add a new 'logging' entry into your active configuration. This works in all cases except problems that happen very early in the initialization stage of the debugger. Here is an example of the new sections to add to launch.json:
 
+```json
+"configurations": [
     {
-        "version": "0.2.0",
-        "configurations": [
-            {
-                 ...,
-                 "logging": {
-                     "trace": true,
-                     "traceResponse": true,
-                     "engineLogging": true
-                 }
+        "...": "...",
+        "logging": {
+            "traceResponse": true,
+            "engineLogging": true
+        }
+    },
+    { "...": "..." }
+]
+```
 
 When this is enabled, logging will be sent to the VS Code Debug Console where you can copy/paste the relevant sections.
 
@@ -20,9 +22,9 @@ When this is enabled, logging will be sent to the VS Code Debug Console where yo
 If you are dealing with a problem that happens either very early on during debugger startup, or you want to gather complete logs, it is also possible to send logging output to a file. Though this method requires a bit more work. Here are the steps.
 
 #### 1: Open package.json
-Fire up your favorite editor and open the C# extension's package.json file. You might want to use something other than VS Code so that you can restart VS Code without having to close this file, but it isn't required. Package.json can be found here:
+Fire up your favorite editor and open the C# extension's package.json file. You might want to use something other than VS Code so that you can restart VS Code without having to close this file, but it isn't required. The package.json can be found here:
 
-* **Windows:** C:\Users\\\<your-alias\>\\.vscode\extensions\ms-vscode.csharp-\<ver\>\\package.json
+* **Windows:** C:\Users\\\<your-username\>\\.vscode\\extensions\\ms-vscode.csharp-\<ver\>\\package.json
 * **OSX/Linux:** ~/.vscode/extensions/ms-vscode.csharp-\<ver\>/package.json
 
 **NOTE:** If you are using the Insiders build of VS Code, replace '.vscode' with '.vscode-insiders'.
@@ -30,16 +32,19 @@ Fire up your favorite editor and open the C# extension's package.json file. You 
 #### 2: Find the debug adapter's 'program' property
 We want to find the 'contributes.debuggers[0].program' element in package.json. The fastest way to do this is to search for 'OpenDebugAD7'. You should see something like this:
 
-        ...
-        "program": "./coreclr-debug/debugAdapters/OpenDebugAD7.exe",
-        ...
+```json
+"...": "...",
+"program": "./coreclr-debug/debugAdapters/OpenDebugAD7.exe",
+```
 
 #### 3: Add 'args' property
 Add a new property after program to pass command line arguments to OpenDebugAD7. We want to pass '--engineLogging=<path-to-file>'. This example logs to c:\\users\\greggm\\cs-debug.log. Replace this with a path that is easy for you.
 
-        ...
-        "args": [ "--engineLogging=c:\\users\\greggm\\cs-debug.log" ],
-        ...
+```json
+"...": "...",
+"program": "./coreclr-debug/debugAdapters/OpenDebugAD7.exe",
+"args": [ "--engineLogging=c:\\users\\greggm\\cs-debug.log" ],
+```
 
 #### 4: Debug
 
