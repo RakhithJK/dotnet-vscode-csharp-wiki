@@ -1,3 +1,7 @@
+## 1.4.1 (September 1, 2016)
+
+* This addresses an issue found and fixed by @sixpindin in which the legacy csharp.omnisharp and csharp.omnisharpUsesMono settings are no longer respected. These settings have been supplanted by the omnisharp.path and omnisharp.useMono settings but are still expected to work if specified.
+
 ## 1.4.0 (August 29, 2016)
 
 #### Metadata as Source
