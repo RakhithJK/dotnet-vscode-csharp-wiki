@@ -17,21 +17,3 @@ The following option can be used in project.json to force the use of portable PD
     "buildOptions": {
         "debugType": "portable"
     },
-
-If you are using a build before ~2600, 'buildOptions' was called 'compilationOptions'.
-
-### Downloading a .NET CLI which supports 'debugType' option
-Support for the 'debugType' option is project.json is newer than the build referenced from http://dotnet.github.io/getting-started as of 3/8/2016 (getting-started references build #1598). On Windows, in our testing, https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/1.0.0.001661/dotnet-win-x64.1.0.0.001661.exe has worked.
-
-##### Unblocking the installer
-The CI builds of the .NET CLI are not signed, which can cause Windows Defender or other antivirus software to try and prevent you from running it. For example, Microsoft edge will put up this dialog:
-
-![dotnet-win-x64.1.0.0.001661.exe is not commonly downloaded and could harm your computer.](https://raw.githubusercontent.com/wiki/OmniSharp/omnisharp-vscode/images/edge-blocks-installer.jpg)
-
-To unblock it:
-
-1. Open the folder where the installer was downloaded to (ex: c:\users\me\downloads)
-2. Right click on the file and bring up properties.
-3. Click the 'Unblock' checkbox
-
-![Unblock button](https://raw.githubusercontent.com/wiki/OmniSharp/omnisharp-vscode/images/unblock-windows-program.jpg)
