@@ -1,3 +1,7 @@
+## 1.5.1 (November 14, 2016)
+
+* Fix to properly support `http.proxy` and `http.proxyStrictSSL` settings. ([#930](https://github.com/OmniSharp/omnisharp-vscode/issues/930))
+
 ## 1.5.0 (November 14, 2016)
 
 #### Initial support for C# 7
