@@ -72,7 +72,7 @@ Once this is all setup, then switch to the debug tab in VS Code, open the config
 
 Once the configuration is selected. Press the play button (F5) to bring up the process selection UI and start debugging.
 
-### Build and deploying the application and PDBs
+### Building and deploying the application and PDBs
 
 Last, to be able to debug obviously the application must somehow be runnable on the target box. For this you can either build the application on the target server, or build the application somewhere else and then deploy it (see [.NET Core documentation](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/index) for more information).
 
