@@ -8,4 +8,5 @@
 **Documentation**
 
 * [[Change Log]]
+* [[Branches and Releases]]
 * [Linux Support](https://github.com/OmniSharp/omnisharp-vscode/wiki/C%23-Extension-support-for-new-Linux-Distros-with-.NET-Core)
