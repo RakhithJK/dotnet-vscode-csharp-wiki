@@ -18,7 +18,7 @@ ssh-keygen -t rsa
 
 If you don't already have SSH installed on your server. The first step is obviously to install it. For example, on Ubuntu you can do that by running: `sudo apt-get install openssh-server`.
 
-After SSH is installed, you want to add the public key generated in the last step (id_rsa.pub) to the list of keys in ~/.ssh/authorized_keys file on your server. To do this, you can copy the id_rsa.pub file to the server and then run `cat id_rsa.pub >> ~/.ssh/authorized_keys`.
+After SSH is installed, you want to add the public key generated in the last step (id_rsa.pub) to the list of keys in ~/.ssh/authorized_keys file on your server. If your computer has it, the easy way is to run `ssh-copy-id ExampleAccount@ExampleTargetComputer`. Alternatively, you can copy the id_rsa.pub file to the server and then run `cat id_rsa.pub >> ~/.ssh/authorized_keys`.
 
 #### Test your connection
 
