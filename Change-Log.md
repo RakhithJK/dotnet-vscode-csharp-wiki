@@ -1,1 +1,0 @@
-You can view our change log [here]([Change Log](https://github.com/OmniSharp/omnisharp-vscode/blob/master/CHANGELOG.md))
