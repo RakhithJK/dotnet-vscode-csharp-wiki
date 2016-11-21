@@ -1,3 +1,7 @@
+## 1.5.3 (November 21, 2016)
+
+* Use value of `http.proxyStrictSSL` even when `http.proxy` is not set. ([#957](https://github.com/OmniSharp/omnisharp-vscode/issues/957))
+
 ## 1.5.2 (November 15, 2016)
 
 * Ensure diagnostics are cleared in files when they are no longer needed. ([#858](https://github.com/OmniSharp/omnisharp-vscode/issues/858))
