@@ -23,5 +23,3 @@ First, find the release that you wish to install at https://github.com/OmniSharp
 
 3. Locate the `.vsix` file you download and click "Open".
 4. Visual Studio Code will prompt you to restart to enable the extension. Click "Restart" to confirm.
-
-That's it!
