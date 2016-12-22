@@ -34,7 +34,7 @@ ssh ExampleAccount@ExampleTargetComputer echo "Hello World"
 
 As the last server setup step, we need to download CLRDBG (the .NET Core command line debugger) onto the server. The easiest way to do this is by running the following command. Replace '~/clrdbg' with wherever you want CLRDBG installed to.
 
-    curl -sSL https://aka.ms/getclrdbgsh | bash /dev/stdin vs2015u2 ~/clrdbg
+    curl -sSL https://aka.ms/getclrdbgsh | bash /dev/stdin latest ~/clrdbg
 
 ### Configuring launch.json
 
