@@ -45,7 +45,7 @@ Now that we have our target machine ready to go, its time to configure your proj
             "name": ".NET Core Remote Attach",
             "type": "coreclr",
             "request": "attach",
-            "processId": "${command.pickRemoteProcess}",
+            "processId": "${command:pickRemoteProcess}",
             "pipeTransport": {
                 "pipeProgram": "ssh",
                 "pipeArgs": [ "ExampleAccount@ExampleTargetComputer" ],
