@@ -48,7 +48,7 @@ Now that we have our target machine ready to go, its time to configure your proj
             "processId": "${command:pickRemoteProcess}",
             "pipeTransport": {
                 "pipeProgram": "ssh",
-                "pipeArgs": [ "ExampleAccount@ExampleTargetComputer" ],
+                "pipeArgs": [ "-T", "ExampleAccount@ExampleTargetComputer" ],
                 "debuggerPath": "~/clrdbg/clrdbg",
                 "pipeCwd": "${workspaceRoot}"
             },
