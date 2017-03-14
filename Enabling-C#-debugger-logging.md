@@ -8,7 +8,6 @@ The quick way to enable logging is to modify your .vscode/launch.json file and a
     {
         "...": "...",
         "logging": {
-            "traceResponse": true,
             "engineLogging": true
         }
     },
