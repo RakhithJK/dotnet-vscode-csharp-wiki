@@ -30,20 +30,28 @@ Fire up your favorite editor and open the C# extension's package.json file. You 
 **NOTE:** If you are using the Insiders build of VS Code, replace '.vscode' with '.vscode-insiders'.
 
 #### 2: Find the debug adapter's 'program' property
-We want to find the 'contributes.debuggers[0].program' element in package.json. The fastest way to do this is to search for 'OpenDebugAD7'. You should see something like this:
+We want to find the 'contributes.debuggers[0].\<os-name\>.program' element in package.json. The fastest way to do this is to search for '.debugger/vsdbg-ui'. You should see something like this:
 
 ```json
-"...": "...",
-"program": "./coreclr-debug/debugAdapters/OpenDebugAD7.exe",
+        "windows": {
+          "program": "./.debugger/vsdbg-ui.exe"
+        },
+        "osx": {
+          "program": "./.debugger/vsdbg-ui"
+        },
+        "linux": {
+          "program": "./.debugger/vsdbg-ui"
+        }
 ```
 
 #### 3: Add 'args' property
-Add a new property after program to pass command line arguments to OpenDebugAD7. We want to pass '--engineLogging=<path-to-file>'. This example logs to c:\\users\\greggm\\cs-debug.log. Replace this with a path that is easy for you.
+Add a new property after program to pass command line arguments to vsdbg-ui. We want to pass '--engineLogging' which will save a log to $HOME/vsdbg-ui.log (or %HOMEDRIVE%%HOMEPATH%\vsdbg-ui.log on Windows).
 
 ```json
-"...": "...",
-"program": "./coreclr-debug/debugAdapters/OpenDebugAD7.exe",
-"args": [ "--engineLogging=c:\\users\\greggm\\cs-debug.log" ],
+  "osx": {
+    "program": "./debugger/vsdbg-ui",
+    "args": [ "--engineLogging" ]
+  }
 ```
 
 #### 4: Debug
