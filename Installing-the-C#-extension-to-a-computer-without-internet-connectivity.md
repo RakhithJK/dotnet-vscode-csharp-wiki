@@ -31,6 +31,6 @@ Instructions:
 ./node_modules/agent-base/node_modules/semver/bin/semver
 ./node_modules/open/vendor/xdg-open
 ./node_modules/mkdirp/bin/cmd.js
-./.debugger/OpenDebugAD7
-./.debugger/clrdbg
+./.debugger/vsdbg-ui
+./.debugger/vsdbg
 ```
