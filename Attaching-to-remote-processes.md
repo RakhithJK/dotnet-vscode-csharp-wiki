@@ -30,11 +30,11 @@ ssh ExampleAccount@ExampleTargetComputer echo "Hello World"
 
 (Where ExampleAccount and ExampleTargetComputer should be replaced with appropriate values)
 
-#### Installing CLRDBG on the server
+#### Installing VSDBG on the server
 
-As the last server setup step, we need to download CLRDBG (the .NET Core command line debugger) onto the server. The easiest way to do this is by running the following command. Replace '~/clrdbg' with wherever you want CLRDBG installed to.
+As the last server setup step, we need to download VSDBG (the .NET Core command line debugger) onto the server. The easiest way to do this is by running the following command. Replace '~/vsdbg' with wherever you want VSDBG installed to.
 
-    curl -sSL https://aka.ms/getclrdbgsh | bash /dev/stdin -v latest -l ~/clrdbg
+    curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 
 ### Configuring launch.json
 
@@ -49,8 +49,9 @@ Now that we have our target machine ready to go, its time to configure your proj
             "pipeTransport": {
                 "pipeProgram": "ssh",
                 "pipeArgs": [ "-T", "ExampleAccount@ExampleTargetComputer" ],
-                "debuggerPath": "~/clrdbg/clrdbg",
-                "pipeCwd": "${workspaceRoot}"
+                "debuggerPath": "~/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": true
             },
             "sourceFileMap": {
                 "/home/ExampleAccount/ExampleProject": "${workspaceRoot}"
@@ -59,11 +60,12 @@ Now that we have our target machine ready to go, its time to configure your proj
 ```
 
 Here is what these options do:
-* `processId`: 'command.pickRemoteProcess' instructs Visual Studio code to bring up UI to select the process to attach to. You can also replace this with the process id of the process you would like to debug if for some reason you don't like the selection UI.
+* `processId`: 'command:pickRemoteProcess' instructs Visual Studio code to bring up UI to select the process to attach to. You can also replace this with the process id of the process you would like to debug if for some reason you don't like the selection UI.
 * `pipeTransport.pipePorgram`: This an the executable which should be launched to provide a connection to the target computer. In this example we are using SSH, so this is the path to ssh client command.
 * `pipeTransport.pipeArgs`: This is any arguments to pass to the pipe program. For the SSH client library we need to provide the computer to connect to. To use SSH, replace ExampleAccount/ExampleTargetComputer with appropriate values.
-* `pipeTransport.debuggerPath`: This is the path to where CLRDBG is running on the target computer.
+* `pipeTransport.debuggerPath`: This is the path to where VSDBG is running on the target computer.
 * `sourceFileMap`: To debug programs built on computers other than the Visual Studio code computer, Visual Studio code needs to be hold how to map file paths. So, for example, if you are debugging 'ExampleProject' which was built in your home directory on the Linux server, and now you have the same code open in Visual Studio code, this rule tells the debugger to change any file paths that it sees in '/home/ExampleAccount/ExampleProject' and replace it with the open directory.
+* `quoteArgs`: Should arguments that contain characters that need to be quoted (example: spaces) be quoted? Defaults to 'true'. If set to false, the debugger command will no longer be automatically quoted.
 
 Once this is all setup, then switch to the debug tab in VS Code, open the configuration drop down and select your new configuration ('.NET Core Remote Attach'). You may need to restart VS Code to have your new configuration show up in the list.
 
@@ -78,4 +80,4 @@ Last, to be able to debug obviously the application must somehow be runnable on 
 There are two special concerns in this area when it comes to debugging:
 
 1. Debug vs. Release Configuration: If you are going to be debugging, the experience is going to be much better if the debug configuration of your application is running instead of the release configuration. If this isn't possible, one can debug release code. To do this, disable [justMyCode](https://github.com/OmniSharp/omnisharp-vscode/blob/release/debugger.md#just-my-code) in launch.json.
-2. PDB files: In order for CLRDBG to be able to be able to map executable code back to its source code (or vice versa) CLRDBG needs to have PDB files. If you are already building your application on the target server, this is taken care of for you. If you are building it somewhere else, you need to make sure to copy the PDB files next to their associated dll or set the DebugType to 'embedded' so that the PDB data is kept inside of the compiled dll.
+2. PDB files: In order for VSDBG to be able to be able to map executable code back to its source code (or vice versa) VSDBG needs to have PDB files. If you are already building your application on the target server, this is taken care of for you. If you are building it somewhere else, you need to make sure to copy the PDB files next to their associated dll or set the DebugType to 'embedded' so that the PDB data is kept inside of the compiled dll.
