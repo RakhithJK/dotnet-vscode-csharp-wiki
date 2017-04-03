@@ -53,6 +53,15 @@ Add a new property after program to pass command line arguments to vsdbg-ui. We 
   }
 ```
 
+If you wish to specify where to save the log file, you can use the following schema:
+
+```json
+  "osx": {
+    "program": "./debugger/vsdbg-ui",
+    "args": [ "--engineLogging=<logfile>" ]
+  }
+```
+
 #### 4: Debug
 
 Restart VS Code to make sure that VS Code re-reads package.json. Then start debugging as normal. Debug until the problem is hit, then stop debugging. You should now see that the log file has been written.
