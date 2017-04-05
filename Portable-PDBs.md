@@ -13,7 +13,7 @@ For other .csproj files such as portable class libraries (PCLs), portable PDBs c
 
 **NOTE**: For legacy reasons, the C# compiler option (and hence the name of the msbuild/project.json flags) to generate Windows PDBs is 'full'. However, this should NOT imply that Windows-only PDBs have more information than Portable PDBs. 
 
-###.NET CLI projects (project.json)
+### .NET CLI projects (project.json)
 The following option can be used in project.json to force the use of portable PDBs. This is currently not necessary when building on OSX/Linux, but is on Windows --
 
     "buildOptions": {
