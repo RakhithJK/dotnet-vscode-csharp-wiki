@@ -1,5 +1,7 @@
 **Debugger**
 
+* [Overview](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger.md)
+* [launch.json Help](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md)
 * [Feature List](https://github.com/OmniSharp/omnisharp-vscode/wiki/.NET-Core-debugging-feature-list)
 * [Enable Logging](https://github.com/OmniSharp/omnisharp-vscode/wiki/Enabling-C%23-debugger-logging)
 * [[Portable PDBs]]
