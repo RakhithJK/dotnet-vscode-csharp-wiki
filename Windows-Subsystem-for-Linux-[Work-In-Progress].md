@@ -3,8 +3,9 @@ With Windows 10 Creators Update, you can use Visual Studio Code to debug dotnet 
 This wiki walks through the steps required to debug dotnet core application on WSL.
 
 ## Prerequisites
-Windows 10 Creators Update with Windows Subsystem for Linux and Bash installed.
-Visual Studio Code and Microsoft C# extension for VSCode. 
+* [Windows 10 Creators Update with Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and Bash installed.
+* Visual Studio Code 
+* Microsoft C# extension for VSCode. 
 
 Windows 10 Creators update comes with 16.04.2 LTS version of Ubuntu. You can confirm that by running the command below.
 
@@ -15,13 +16,14 @@ VERSION_ID="16.04"
 VERSION_CODENAME=xenial
 ```
 
-If the version of the installed Ubuntu is 14, use the following commands to install the new WSL.
+If the version of the installed Ubuntu is 14, run the following commands in a cmd to install the new WSL. 
+
 ```
 lxrun /uninstall /full
 lxrun /install
 ```
 
-Goto [https://www.microsoft.com/net/core#linuxubuntu](https://www.microsoft.com/net/core#linuxubuntu) follow the instructions to install dotnet core in WSL.
+Go to [https://www.microsoft.com/net/core#linuxubuntu](https://www.microsoft.com/net/core#linuxubuntu) follow the instructions to install dotnet core in WSL.
 
 ## Install the debugger
 
@@ -54,7 +56,7 @@ Now the debugger is available at location `~/vsdbg/vsdbg`
        }
 ```
 
-The sample application shown here lives in the Windows path `C:\temp\dotnetapps\wslApp`, built and runnable in Windows. WSL by default allows windows paths to be accessible through `/mnt/<driveletter>/<path>`, so the path above is accessible as `/mnt/c/temp/dotnetapps/wslApp` from WSL.
+The sample application shown here lives in the Windows path `C:\temp\dotnetapps\wslApp`, built and runnable in Windows. WSL by default allows windows paths to be accessible through `/mnt/<driveletter>/<path>`, so the path above is accessible as `/mnt/c/temp/dotnetapps/wslApp` from WSL. 
 
 Note:
 1. `preLaunchTask` executes build, which builds the project on Windows. Since coreclr is cross-platform, the binary can be executed on WSL without any extra work.
@@ -81,7 +83,9 @@ Note:
 1. `"processId": "${command:pickRemoteProcess}"` lists the processes running on WSL using the pipe program. 
 2. `quoteArgs` set to `true`. Arguments passed in the `pipeArgs` along with the debugger command will be quoted if `quoteArgs` is set to `true`. 
 
-Note: Use `sourceFileMap` to map sources if they are available in a different location than where they were built. 
+Note: 
+* Use `sourceFileMap` to map sources if they are available in a different location than where they were built. 
+* File and paths are case sensitive in Linux.
 
 ## Also see
 [C++ debugging in WSL with VSCode C++ Extensions.](https://github.com/Microsoft/vscode-cpptools/blob/master/Documentation/Debugger/gdb/Windows%20Subsystem%20for%20Linux.md)
