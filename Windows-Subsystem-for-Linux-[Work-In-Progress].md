@@ -17,7 +17,7 @@ VERSION_ID="16.04"
 VERSION_CODENAME=xenial
 ```
 
-If the version is 14, run the following commands in a cmd to reinstall and update WSL. 
+If you had upgraded to Windows Creators update and already had WSL installed, you might still have Ubuntu 14 in the WSL. If the version is 14, run the following commands in a cmd prompt to reinstall and update WSL. 
 
 _Note: These commands remove everything in your current WSL. Please be sure to save any files you wish to keep._
 
