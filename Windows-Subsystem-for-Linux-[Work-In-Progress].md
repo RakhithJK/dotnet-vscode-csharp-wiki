@@ -1,4 +1,4 @@
-With the Windows 10 Creators Update, you can use Visual Studio Code to debug .NET core applications on [Windows Subsystem for Linux (WSL)](https://msdn.microsoft.com/en-us/commandline/wsl/about).
+With the Windows 10 Creators Update (Windows version 10.0.15063), you can use Visual Studio Code to debug .NET core applications on [Windows Subsystem for Linux (WSL)](https://msdn.microsoft.com/en-us/commandline/wsl/about).
 
 This page will walk you through the steps required to debug a .NET core application on WSL.
 
