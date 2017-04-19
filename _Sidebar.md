@@ -6,6 +6,7 @@
 * [Enable Logging](https://github.com/OmniSharp/omnisharp-vscode/wiki/Enabling-C%23-debugger-logging)
 * [[Portable PDBs]]
 * [[Attaching to remote processes]]
+* [[Windows Subsystem for Linux]]
 
 **Documentation**
 
