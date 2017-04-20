@@ -1,5 +1,3 @@
-# NOTE: This page applies to the not-yet-released v1.9 of the C# extension
-
 #### Instructions
 
 .NET Core does not official provide packages for use on Arch Linux. But many folks in the community have been successful in getting it to work. Here are the steps:
