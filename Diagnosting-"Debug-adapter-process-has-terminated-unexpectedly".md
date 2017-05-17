@@ -1,4 +1,4 @@
-If Visual Studio code displays "Debug adapter process has terminated unexpectedly" this generally means that the debugger process (vsdbg-ui) crashed. Here is some information you can provide us to diagnose what went wrong.
+If Visual Studio code displays "Debug adapter process has terminated unexpectedly", and the debug console doesn't have information about why, this generally means that the debugger process (vsdbg-ui) crashed. Here is some information you can provide us to diagnose what went wrong.
 
 ### Common
 On all OSs, it can be useful to have [logging enabled](https://github.com/OmniSharp/omnisharp-vscode/wiki/Enabling-C%23-debugger-logging), and to provide the last bit of the event log.
@@ -44,7 +44,24 @@ Thread 9 Crashed:
 ```
 
 ### Windows
-Coming soon
+1. Open Event Viewer
+2. Go to Windows Logs->Application
+3. Find an event with a Source of 'Application Error' or 'Windows Error Reporting' for the crash
+4. Copy/paste the event details. Something like the following.
+
+```
+Faulting application name: vsdbg-ui.exe, version: 1.1.0.1179, time stamp: 0x58224b03
+Faulting module name: vsdbg.DLL, version: 15.1.10517.0, time stamp: 0x591cc77d
+Exception code: 0xc0000005
+Fault offset: 0x00000000002e3d3a
+Faulting process id: 0x2dd8
+Faulting application start time: 0x01d2cf58f1e7031e
+Faulting application path: C:\Users\greggm\.vscode\extensions\ms-vscode.csharp-1.9.0\.debugger\vsdbg-ui.exe
+Faulting module path: C:\Users\greggm\.vscode\extensions\ms-vscode.csharp-1.9.0\.debugger\vsdbg.DLL
+Report Id: 694807aa-44e0-42d3-8129-437f457a5efd
+Faulting package full name: 
+Faulting package-relative application ID: 
+```
 
 ### Linux
 TBD
