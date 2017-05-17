@@ -1,5 +1,8 @@
 If Visual Studio code displays "Debug adapter process has terminated unexpectedly" this generally means that the debugger process (vsdbg-ui) crashed. Here is some information you can provide us to diagnose what went wrong.
 
+### Common
+On all OSs, it can be useful to have [logging enabled](https://github.com/OmniSharp/omnisharp-vscode/wiki/Enabling-C%23-debugger-logging), and to provide the last bit of the event log.
+
 ### macOS
 
 1. Open 'Console' from the Application->Utilities
