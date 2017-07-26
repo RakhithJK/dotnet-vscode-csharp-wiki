@@ -1,6 +1,6 @@
 #### Instructions
 
-.NET Core does not official provide packages for use on Arch Linux. But many folks in the community have been successful in getting it to work. Here are the steps:
+.NET Core does not officially provide packages for use on Arch Linux. But many folks in the community have been successful in getting it to work. Here are the steps:
 
 1: Find or install icu (International Components for Unicode library). The [icu52 package](https://aur.archlinux.org/packages/icu52/) is compatible with the Ubuntu 14.04 .NET Core, and the [icu57 package](https://aur.archlinux.org/packages/icu57/) is compatible with the Ubuntu 16.04 .NET Core. You can find the version you have installed with `ldconfig -p | grep libicuuc.so`.
 
