@@ -81,3 +81,40 @@ There are two special concerns in this area when it comes to debugging:
 
 1. Debug vs. Release Configuration: If you are going to be debugging, the experience is going to be much better if the debug configuration of your application is running instead of the release configuration. If this isn't possible, one can debug release code. To do this, disable [justMyCode](https://github.com/OmniSharp/omnisharp-vscode/blob/release/debugger.md#just-my-code) in launch.json.
 2. PDB files: In order for VSDBG to be able to be able to map executable code back to its source code (or vice versa) VSDBG needs to have PDB files. If you are already building your application on the target server, this is taken care of for you. If you are building it somewhere else, you need to make sure to copy the PDB files next to their associated dll or set the DebugType to 'embedded' so that the PDB data is kept inside of the compiled dll.
+
+## Troubleshooting Remote Attach to Mac
+
+### Enable Logging
+
+#### Visual Studio
+From View -> Other Windows -> Command Window, type ```DebugAdapterHost.Logging /On /OutputWindow to have logs appear in the Output Window.
+
+#### VsCode
+Logging can be enabled by adding the following to your launch.json configuration:
+```javascript
+"logging": {
+   "engineLogging": true
+}
+```
+
+### Known Errors
+
+#### Developer Mode not Enabled
+If the process failed to attach and there is a similar event to the following:
+```javascript
+{
+   "event":"output",
+   "body": {
+   "category":"telemetry",
+   "output":"VS/Diagnostics/Debugger/vsdbg/AttachFailed",
+   "data":{
+      "VS.Diagnostics.Debugger.vsdbg.OSFamily":"Darwin",
+      "VS.Diagnostics.Debugger.vsdbg.ErrorCode":-2147024809
+}
+```
+
+and if you are on VsCode, you should see the stderr message: 
+``` vmmap[6174]: [fatal] unable to ask for permission to examine process; run tool using sudo, or without redirecting stdin and stderr. ```
+
+Most likely that Developer Mode is not enabled on your mac machine. You can enable it by typing ```sudo DevToolsSecurity --enable```
+
