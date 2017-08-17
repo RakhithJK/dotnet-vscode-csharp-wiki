@@ -44,6 +44,13 @@ Thread 9 Crashed:
 ```
 
 ### Windows
+
+#### Gathering details using PowerShell
+1. Open a powershell prompt
+2. Run `Get-EventLog -LogName Application -Source 'Windows Error Reporting' | Where Message –match 'P1:\s+(vsdbg-ui.exe|vsdbg.exe)' | Format-List | clip`
+3. Paste the results into the bug
+
+#### Gathering details by hand
 1. Open Event Viewer
 2. Go to Windows Logs->Application
 3. Find an event with a Source of 'Application Error' or 'Windows Error Reporting' for the crash
