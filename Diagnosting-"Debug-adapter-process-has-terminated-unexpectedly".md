@@ -47,7 +47,7 @@ Thread 9 Crashed:
 
 #### Gathering details using PowerShell
 1. Open a powershell prompt
-2. Run `Get-EventLog -LogName Application -Source 'Windows Error Reporting' | Where Message –match 'P1:\s+(vsdbg-ui.exe|vsdbg.exe)' | Format-List | clip`
+2. Run `Get-EventLog -LogName Application -Source 'Windows Error Reporting' -after (get-date).AddDays(-1) | Where Message –match 'P1:\s+(vsdbg-ui.exe|vsdbg.exe)' | Format-List | clip`
 3. Paste the results into the bug
 
 #### Gathering details by hand
