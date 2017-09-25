@@ -7,7 +7,7 @@
 * [[Portable PDBs]]
 * [[Attaching to remote processes]]
 * [[Windows Subsystem for Linux]]
-* [[Diagnosting "Debug adapter process has terminated unexpectedly"]]
+* [[Diagnosting 'Debug adapter process has terminated unexpectedly']]
 
 **Documentation**
 
