@@ -1,0 +1,152 @@
+***This is a beta release feature***
+
+The extension supports remote debugging to `linux-arm` and requires netcoreapp 2.1. The extension has been tested against **`Raspbian 8 and 9`**. 
+
+If you run into any problems, please file an [issue](https://github.com/omnisharp/omnisharp-vscode) and note in the text that this is related to `linux-arm`. 
+
+Choose **one** of the following deployment methods:
+
+* [Framework Dependent Deployment](#framework-dependent-deployment): Compile the application locally. Deploy the binary to `linux-arm`. **Requires the .NET Core Runtime to be installed on `linux-arm`.** 
+
+* [Self Contained Deployment](#self-contained-deployment): Compile and publish the application locally. Deploy the standalone application to `linux-arm`.
+
+# Prerequisites
+
+## Install .NET Core SDK v2.2.0 preview locally
+* Install a [daily build](https://github.com/dotnet/cli#installers-and-binaries) of dotnet SDK 2.2.0 beta locally.
+* Ensure that .NET Command Line Tools v2.2 or higher is installed
+    * Run `dotnet --info` to verify.
+
+        *Example:*
+        ```bash
+         $ dotnet --info
+        .NET Command Line Tools (2.2.0-preview1-007582)
+        
+        Product Information:
+        Version:            2.2.0-preview1-007582
+        ...
+        ```
+        
+## Install the debugger on `linux-arm`
+Run the following command on `linux-arm` *(installs to ~/vsdbg)*:
+```
+curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest -l ~/vsdbg
+```
+
+# Framework Dependent Deployment
+
+## Install prerequisites
+* [General prerequisites](#prerequisites)
+* Install on `linux-arm` a [daily build](https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz) of .NET Core Runtime v2.1 preview.
+
+    *Example (installs to ~/dotnet):*
+    ```
+    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz | 
+    tar xvzf /dev/stdin -C ~/dotnet
+    ```
+
+## Create a new console project
+* Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
+    * [The NuGet package restoral may fail to get the necessary packages](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
+        * Create a `nuget.config` file with the following block:
+        ``` xml
+        <configuration>
+			  <packageSources>
+			    <add key="dotnet-myget" value="https://dotnet.myget.org/F/dotnet-core/api/v3/index.json" />
+			  </packageSources>
+        </configuration> 
+        ```
+        * Run `dotnet restore --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json`. 
+
+## Build and Deploy
+* In your application's root folder, run `dotnet build`
+* Copy all the files under `bin/Debug/netcoreapp2.1/` to your `linux-arm` device.
+    * To test run your application, on `linux-arm`, run the entrypoint `.dll` with `dotnet`.
+        ```bash
+        $ ~/dotnet/dotnet MyConsoleApp.dll
+        ```
+
+## Remotely debug your application
+Reference the sample `launch.json` below. 
+* The `"program"` field is set to the `dotnet` executable and the first `"args"` item is the  application `.dll` relative to the current working directory (`"cwd"`) on `linux-arm`.
+* Update the fields under `"pipeArgs"` to include the IP address of the `linux-arm` device and the ssh keyfile. 
+* The `"debuggerPath"` points to the location where you installed the debugger to on `linux-arm`.
+
+### Sample `launch.json`
+```json
+    {
+        "name": ".NET Core Remote Launch - Framework Dependent (console)",
+        "type": "coreclr",
+        "request": "launch",
+        "program": "~/dotnet/dotnet",
+        "args": [
+            "./MyConsoleApp.dll"
+        ],
+        "cwd": "~/MyConsoleApp",
+        "stopAtEntry": false,
+        "console": "internalConsole",
+        "pipeTransport": {
+            "pipeCwd": "${workspaceRoot}",
+            "pipeProgram": "/usr/bin/ssh",
+            "pipeArgs": [
+                "-i", "mysshkeyfile",
+                "pi@10.10.10.10"
+            ],
+            "debuggerPath": "~/vsdbg/vsdbg"
+            }
+    }
+```
+
+# Self Contained Deployment
+## Install prerequisites
+* [General prerequisites](#prerequisites)
+
+## Create a new console project
+* Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
+    * [The NuGet package restoral may fail to get the necessary packages](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
+        * Create a `nuget.config` file with the following block:
+        ``` xml
+        <configuration>
+			  <packageSources>
+			    <add key="dotnet-myget" value="https://dotnet.myget.org/F/dotnet-core/api/v3/index.json" />
+			  </packageSources>
+        </configuration> 
+        ```
+        * Run `dotnet restore --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json`. 
+
+## Build and Deploy
+* Run `dotnet publish -r linux-arm`
+* Copy all the files under `bin/Debug/netcoreapp2.1/linux-arm/publish/` to `linux-arm`.
+* Test your application by running the standalone executable
+    ```bash
+    $ ./MyConsoleApp
+    ```
+
+## Remotely debug your standalone application executable
+Reference the sample `launch.json` below.
+* The `"program"` field is the standalone executable relative to the current working directory (`"cwd"`) on `linux-arm`.
+* Update the fields under `"pipeArgs"` to include the IP address of the `linux-arm` device and the ssh keyfile. 
+* The `"debuggerPath"` points to the location where you installed the debugger to on `linux-arm`.
+
+### Sample `launch.json`
+```json
+    {
+        "name": ".NET Core Remote Launch - Standalone Application (console)",
+        "type": "coreclr",
+        "request": "launch",
+        "program": "MyConsoleApp",
+        "args": [],
+        "cwd": "~/MyConsoleApp",
+        "stopAtEntry": false,
+        "console": "internalConsole",
+        "pipeTransport": {
+            "pipeCwd": "${workspaceRoot}",
+            "pipeProgram": "/usr/bin/ssh",
+            "pipeArgs": [
+                "-i", "mysshkeyfile",
+                "pi@10.10.10.10"
+            ],
+            "debuggerPath": "~/vsdbg/vsdbg"
+            }
+    }
+```
