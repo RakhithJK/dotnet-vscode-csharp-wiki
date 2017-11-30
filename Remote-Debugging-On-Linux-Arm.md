@@ -1,6 +1,6 @@
 ***This is a beta release feature***
 
-The extension supports remote debugging netcoreapp 2.1 on `linux-arm`. Debugging does not support netcoreapp 2.0. The extension has been tested against **`Raspbian 8 and 9`**. 
+The extension supports remote debugging netcoreapp 2.1 on `linux-arm`. Debugging does not support netcoreapp 2.0. The extension has been tested against **`Raspbian 8 and 9`**. Please let us know if you run into issues with other distributions.
 
 If you run into any problems, please file an [issue](https://github.com/omnisharp/omnisharp-vscode) and note in the text that this is related to `linux-arm`. 
 
@@ -26,18 +26,20 @@ Choose **one** of the following deployment methods:
         Version:            2.2.0-preview1-007582
         ...
         ```
-        
-## Install the debugger on `linux-arm`
-Run the following command on `linux-arm` *(installs to ~/vsdbg)*:
+
+## Install the debugger for `linux-arm` (target computer)
+* Install the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). On Raspbian, the only thing missing is libunwind8.
+* Run the following command on `linux-arm` *(installs to ~/vsdbg)*:
 ```
 curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest -l ~/vsdbg
 ```
 
-# Framework Dependent Deployment
+# Framework-Dependent Deployment
+Framework-dependent deployments are when the application is deployed without a copy of .NET Core itself, so the application depends on the shared .NET Core Framework being installed. See [docs.microsoft.com](https://docs.microsoft.com/en-us/dotnet/core/deploying/) for more information.
 
 ## Install prerequisites
 * [General prerequisites](#prerequisites)
-* Install on `linux-arm` a [daily build](https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz) of .NET Core Runtime v2.1 preview.
+* On the target computer, install a `linux-arm` [daily build](https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz) of .NET Core Runtime v2.1 preview.
 
     *Example (installs to ~/dotnet):*
     ```
@@ -91,7 +93,7 @@ Reference the sample `launch.json` below.
             "pipeCwd": "${workspaceRoot}",
             "pipeProgram": "/usr/bin/ssh",
             "pipeArgs": [
-                "-i", "mysshkeyfile",
+                "-T", "-i", "mysshkeyfile",
                 "pi@10.10.10.10"
             ],
             "debuggerPath": "~/vsdbg/vsdbg"
@@ -99,7 +101,9 @@ Reference the sample `launch.json` below.
     }
 ```
 
-# Self Contained Deployment
+# Self-Contained Deployment
+Self-contained deployments are when all of an applications' dependencies are carried with the deployment. So the only thing that must be installed on the target computer is the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). See [docs.microsoft.com](https://docs.microsoft.com/en-us/dotnet/core/deploying/) for more information.
+
 ## Install prerequisites
 * [General prerequisites](#prerequisites)
 
@@ -147,7 +151,7 @@ Reference the sample `launch.json` below.
             "pipeCwd": "${workspaceRoot}",
             "pipeProgram": "/usr/bin/ssh",
             "pipeArgs": [
-                "-i", "mysshkeyfile",
+                "-T", "-i", "mysshkeyfile",
                 "pi@10.10.10.10"
             ],
             "debuggerPath": "~/vsdbg/vsdbg"
