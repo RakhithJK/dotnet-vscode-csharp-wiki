@@ -1,6 +1,6 @@
 ***This is a beta release feature***
 
-The extension supports remote debugging to `linux-arm` and requires netcoreapp 2.1. The extension has been tested against **`Raspbian 8 and 9`**. 
+The extension supports remote debugging netcoreapp 2.1 on `linux-arm`. Debugging does not support netcoreapp 2.0. The extension has been tested against **`Raspbian 8 and 9`**. 
 
 If you run into any problems, please file an [issue](https://github.com/omnisharp/omnisharp-vscode) and note in the text that this is related to `linux-arm`. 
 
@@ -47,7 +47,7 @@ curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest
 
 ## Create a new console project
 * Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
-    * [The NuGet package restoral may fail to get the necessary packages](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
+    * [The restoring of the NuGet packages may fail with an error](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
         * Create a `nuget.config` file with the following block:
         ``` xml
         <configuration>
@@ -61,7 +61,7 @@ curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest
 ## Build and Deploy
 * In your application's root folder, run `dotnet build`
 * Copy all the files under `bin/Debug/netcoreapp2.1/` to your `linux-arm` device.
-    * To test run your application, on `linux-arm`, run the entrypoint `.dll` with `dotnet`.
+    * To test run your application, on `linux-arm`, run the entrypoint `MyConsoleApp.dll` with `dotnet`.
         ```bash
         $ ~/dotnet/dotnet MyConsoleApp.dll
         ```
@@ -117,7 +117,7 @@ Reference the sample `launch.json` below.
 ## Build and Deploy
 * Run `dotnet publish -r linux-arm`
 * Copy all the files under `bin/Debug/netcoreapp2.1/linux-arm/publish/` to `linux-arm`.
-* Test your application by running the standalone executable
+* Test your application by running the standalone executable `MyConsoleApp`.
     ```bash
     $ ./MyConsoleApp
     ```
