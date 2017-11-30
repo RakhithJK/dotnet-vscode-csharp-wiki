@@ -12,7 +12,7 @@ Choose **one** of the following deployment methods:
 
 # Prerequisites
 
-## Install .NET Core SDK v2.2.0 preview locally
+## Install .NET Core SDK v2.2.0 preview locally (IDE computer)
 * Install a [daily build](https://github.com/dotnet/cli#installers-and-binaries) of dotnet SDK 2.2.0 beta locally.
 * Ensure that .NET Command Line Tools v2.2 or higher is installed
     * Run `dotnet --info` to verify.
@@ -46,6 +46,7 @@ curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest
     ```
 
 ## Create a new console project
+On the IDE computer:
 * Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
     * [The restoring of the NuGet packages may fail with an error](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
         * Create a `nuget.config` file with the following block:
@@ -59,6 +60,7 @@ curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest
         * Run `dotnet restore --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json`. 
 
 ## Build and Deploy
+On the IDE computer:
 * In your application's root folder, run `dotnet build`
 * Copy all the files under `bin/Debug/netcoreapp2.1/` to your `linux-arm` device.
     * To test run your application, on `linux-arm`, run the entrypoint `MyConsoleApp.dll` with `dotnet`.
@@ -102,6 +104,7 @@ Reference the sample `launch.json` below.
 * [General prerequisites](#prerequisites)
 
 ## Create a new console project
+On the IDE computer:
 * Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
     * [The NuGet package restoral may fail to get the necessary packages](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
         * Create a `nuget.config` file with the following block:
@@ -115,6 +118,7 @@ Reference the sample `launch.json` below.
         * Run `dotnet restore --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json`. 
 
 ## Build and Deploy
+On the IDE computer:
 * Run `dotnet publish -r linux-arm`
 * Copy all the files under `bin/Debug/netcoreapp2.1/linux-arm/publish/` to `linux-arm`.
 * Test your application by running the standalone executable `MyConsoleApp`.
