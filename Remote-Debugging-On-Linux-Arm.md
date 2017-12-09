@@ -76,7 +76,7 @@ Reference the sample `launch.json` below.
 * Update the fields under `"pipeArgs"` to include the IP address of the `linux-arm` device and the ssh keyfile. 
 * The `"debuggerPath"` points to the location where you installed the debugger to on `linux-arm`.
 
-### Sample `launch.json`
+### Sample `launch.json` - macOS and Linux
 ```json
     {
         "name": ".NET Core Remote Launch - Framework Dependent (console)",
@@ -99,6 +99,35 @@ Reference the sample `launch.json` below.
             "debuggerPath": "~/vsdbg/vsdbg"
             }
     }
+```
+
+### Sample `launch.json` - Windows
+
+This launch.json requires that [PuTTY](http://www.putty.org/) is installed. You must convert your ssh keyfile to a format that PuTTY understands with puttygen. See [How to convert SSH keypairs generated using PuttyGen(Windows) into key-pairs used by ssh-agent and KeyChain(Linux)](https://stackoverflow.com/questions/2224066/how-to-convert-ssh-keypairs-generated-using-puttygenwindows-into-key-pairs-use) for tips.
+
+We are researching if WSL (ssh) can be used to avoid needing to install PuTTY (or similar tool).
+
+``` json
+ {
+            ".NET Core Remote Launch - Framework Dependent (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "~/dotnet/dotnet",
+            "args": ["./dotnetapp.dll"],
+            "cwd": "~/dotnet-core-app",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceRoot}",
+                "pipeProgram": "c:\\Program Files\\PuTTY\\plink.exe",
+                "pipeArgs": [
+                    "-i",
+                    "mysshkeyfile.ppk",
+                    "pi@10.10.10.10"
+                ],
+                "debuggerPath": "~/vsdbg/vsdbg"
+            }
+        }
 ```
 
 # Self-Contained Deployment
@@ -136,7 +165,7 @@ Reference the sample `launch.json` below.
 * Update the fields under `"pipeArgs"` to include the IP address of the `linux-arm` device and the ssh keyfile. 
 * The `"debuggerPath"` points to the location where you installed the debugger to on `linux-arm`.
 
-### Sample `launch.json`
+### Sample `launch.json` -- macOS and Linux
 ```json
     {
         "name": ".NET Core Remote Launch - Standalone Application (console)",
@@ -158,3 +187,7 @@ Reference the sample `launch.json` below.
             }
     }
 ```
+
+### Sample `launch.json` - Windows
+
+See Framework Dependent sample above for the appropriate `pipeTransport` section for Windows.
