@@ -107,7 +107,7 @@ This launch.json requires that [PuTTY](http://www.putty.org/) is installed. You 
 
 ``` json
  {
-            ".NET Core Remote Launch - Framework Dependent (console)",
+            "name": ".NET Core Remote Launch - Framework Dependent (console)",
             "type": "coreclr",
             "request": "launch",
             "program": "~/dotnet/dotnet",
