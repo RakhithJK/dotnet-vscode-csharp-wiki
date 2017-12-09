@@ -105,8 +105,6 @@ Reference the sample `launch.json` below.
 
 This launch.json requires that [PuTTY](http://www.putty.org/) is installed. You must convert your ssh keyfile to a format that PuTTY understands with puttygen. See [How to convert SSH keypairs generated using PuttyGen(Windows) into key-pairs used by ssh-agent and KeyChain(Linux)](https://stackoverflow.com/questions/2224066/how-to-convert-ssh-keypairs-generated-using-puttygenwindows-into-key-pairs-use) for tips.
 
-We are researching if WSL (ssh) can be used to avoid needing to install PuTTY (or similar tool).
-
 ``` json
  {
             ".NET Core Remote Launch - Framework Dependent (console)",
@@ -129,6 +127,10 @@ We are researching if WSL (ssh) can be used to avoid needing to install PuTTY (o
             }
         }
 ```
+
+It is likely that other tools than PuTTY can be used. They have not been tested.
+
+We are researching if WSL (ssh) can be used to avoid needing to install PuTTY (or similar tool).
 
 # Self-Contained Deployment
 Self-contained deployments are when all of an applications' dependencies are carried with the deployment. So the only thing that must be installed on the target computer is the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). See [docs.microsoft.com](https://docs.microsoft.com/en-us/dotnet/core/deploying/) for more information.
