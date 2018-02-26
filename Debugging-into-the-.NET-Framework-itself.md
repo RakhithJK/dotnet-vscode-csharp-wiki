@@ -1,5 +1,3 @@
-# This page is a work in progress. Ignore for now.
-
 # Debugging into .NET Core 2.1
 
 Starting with .NET Core 2.1 Preview 1 and C# Extension version 1.15, it is possible to fairly easily debug into the .NET Framework itself. For preview 1 builds, this is currently only possible for ASP.NET assemblies, but it should work for all of the .NET Framework assemblies before the final build of 2.1 ships.
@@ -11,7 +9,7 @@ Starting with .NET Core 2.1 Preview 1 and C# Extension version 1.15, it is possi
 4. If, in step 2, you changed your app to target netcoreapp2.1, make sure to update the path in the `program` to also point at the `netcoreapp2.1`.
 
 ### Turning on .NET Framework stepping
-Open your launch.json file, and add the following entries to the end of your current configuration configuration. 
+Open your launch.json file, and add the following entries to the end of your current configuration. 
 
 **Note:** if you already have an `env` property in your launch.json, move `"COMPlus_ZapDisable": "1"` to that block rather than creating a second `env` property.
 
@@ -28,13 +26,13 @@ Open your launch.json file, and add the following entries to the end of your cur
 
 When you start debugging, symbols should now download from the internet, and if you stop in .NET Framework code, or click on a stack frame, the debugger should automatically download sources.
 
-After you have debugged and you have downloaded all the symbols you need, comment out the `"searchMicrosoftSymbolServer": true` so that the debugger doesn't always go to the internet and search for symbols for any dlls which don't have symbols on the Microsoft symbol server.
+After you have debugged and downloaded all the symbols you need, comment out the `"searchMicrosoftSymbolServer": true` so that the debugger doesn't always go to the internet and search for symbols for any dlls which don't have symbols on the Microsoft symbol server.
 
 ### Explanation about what the options are doing
 
 > `"justMyCode": false,`
 
-Just My Code is a feature that makes it easier to find problems in your code by ignoring code that is optimized or you don't have symbols for. Technically you can still debug into the .NET Framework with `justMyCode` enabled as the other options effectively tell the debugger to think of the .NET Framework as your code, but that is a confusing way to think about things, so it is better to turn the feature off.
+Just My Code is a feature that makes it easier to find problems in your code by ignoring code that is optimized or you don't have symbols for. Technically you can still debug into the .NET Framework with `justMyCode` enabled as the other options effectively tell the debugger to think of the .NET Framework as your code, but that is a confusing way to think about things, so it is better to turn the feature off while you are debugging into the .NET Framework.
 
 
 > `"searchMicrosoftSymbolServer": true`
@@ -51,7 +49,7 @@ This environment variable tells the .NET Runtime that it should ignore the ahead
 
 # Debugging into .NET Core 1.0, 1.1 or 2.0
 
-The versions of .NET Core before 2.1 didn't publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://github.com/dotnet/core/blob/master/Documentation/diagnostics/source_link.md). So while it is certainly possible to debug into the .NET Framework before 2.1, it is *much* harder.
+The versions of .NET Core before 2.1 didn't publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://github.com/dotnet/core/blob/master/Documentation/diagnostics/source_link.md). So, while it is certainly possible to debug into the .NET Framework before 2.1, it is *much* harder.
 
 Here is what you would need to do:
 
