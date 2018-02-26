@@ -1,4 +1,4 @@
-## This page is a work in progress. Ignore for now.
+# This page is a work in progress. Ignore for now.
 
 # Debugging into .NET Core 2.1
 
