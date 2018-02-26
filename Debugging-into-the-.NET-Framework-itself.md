@@ -43,12 +43,22 @@ This adds the Microsoft Symbol Server (https://msdl.microsoft.com/download/symbo
 
 > `"suppressJITOptimizations": true`
 
-TODO
+This option disables optimizations when .NET Framework assemblies load. See [here](https://aka.ms/VSCode-CS-LaunchJson#suppress-jit-optimizations) for a full explanation.
 
 > `"COMPlus_ZapDisable": "1"`
 
-TODO
+This environment variable tells the .NET Runtime that it should ignore the ahead-of-time compiled native code that is in many .NET Framework assemblies, and it should instead compile these assemblies to native code just-in-time. This is important because `"suppressJITOptimizations": true` doesn't affect assemblies that have already been compiled to native code. So the two options work together to make it so that the .NET Framework runs without optimizations.
 
 # Debugging into .NET Core 1.0, 1.1 or 2.0
 
-TODO
+The versions of .NET Core before 2.1 didn't publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://github.com/dotnet/core/blob/master/Documentation/diagnostics/source_link.md). So while it is certainly possible to debug into the .NET Framework before 2.1, it is *much* harder.
+
+Here is what you would need to do:
+
+1. Clone the [repo](https://github.com/dotnet) for whatever .NET Framework assembly you want to debug into.
+2. Create a branch at the release tag for whatever release you have
+3. Build this repo
+4. Change your application so that it has its own copy of the .NET Framework by making it a 'Self-Contained Deployment'. There are instructions on [docs.microsoft.com](https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli#simpleSelf) for this. In brief you need to set a `RuntimeIdentifiers` in your .csproj, publish your app, and change your launch.json to run your app out of this publishing directory. You also would want to either disable the `preLaunchTask`.
+5. Replace the .NET Framework assembly that you want to debug into with the one you just built.
+6. Debug
+6. If you need to make changes to your code, be sure to build and publish your app again, and then again replace the .NET Framework assembly.
