@@ -12,18 +12,18 @@ Choose **one** of the following deployment methods:
 
 # Prerequisites
 
-## Install .NET Core SDK v2.2.0 preview locally (IDE computer)
-* Install a [daily build](https://github.com/dotnet/cli#installers-and-binaries) of dotnet SDK 2.2.0 beta locally.
-* Ensure that .NET Command Line Tools v2.2 or higher is installed
+## Install .NET Core 2.1 SDK locally (IDE computer)
+* The Preview 1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
+* Ensure that .NET Command Line Tools v2.1 or higher is installed
     * Run `dotnet --info` to verify.
 
         *Example:*
         ```bash
          $ dotnet --info
-        .NET Command Line Tools (2.2.0-preview1-007582)
+        .NET Command Line Tools (2.1.300-preview1-008174)
         
         Product Information:
-        Version:            2.2.0-preview1-007582
+        Version:            2.1.300-preview1-008174
         ...
         ```
 
@@ -39,13 +39,14 @@ Framework-dependent deployments are when the application is deployed without a c
 
 ## Install prerequisites
 * [General prerequisites](#prerequisites)
-* On the target computer, install a `linux-arm` [daily build](https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz) of .NET Core Runtime v2.1 preview.
+* On the target computer, install a `linux-arm` build of the .NET Core runtime. The preview1 runtime is at https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-preview1-26216-03/dotnet-runtime-2.1.0-preview1-26216-03-linux-arm.tar.gz.
 
     *Example (installs to ~/dotnet):*
     ```
-    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz | 
+    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-preview1-26216-03/dotnet-runtime-2.1.0-preview1-26216-03-linux-arm.tar.gz | 
     tar xvzf /dev/stdin -C ~/dotnet
     ```
+NOTE: To use a daily build, use https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz instead.
 
 ## Create a new console project
 On the IDE computer:
