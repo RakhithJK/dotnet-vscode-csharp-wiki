@@ -49,7 +49,7 @@ This environment variable tells the .NET Runtime that it should ignore the ahead
 
 # Debugging into .NET Core 1.0, 1.1 or 2.0
 
-The versions of .NET Core before 2.1 didn't publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://github.com/dotnet/core/blob/master/Documentation/diagnostics/source_link.md). So, while it is certainly possible to debug into the .NET Framework before 2.1, it is *much* harder.
+The versions of .NET Core before 2.1 didn't publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://aka.ms/SourceLinkSpec). So, while it is certainly possible to debug into the .NET Framework before 2.1, it is *much* harder.
 
 Here is what you would need to do:
 
