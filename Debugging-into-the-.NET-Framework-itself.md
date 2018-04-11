@@ -4,7 +4,7 @@ Starting with .NET Core 2.1 Preview 1 and C# Extension version 1.15, it is possi
 
 ### Preparation steps:
 1. Install the latest 1.15 beta. [Instructions are here](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-Beta-Releases).
-2. Install the .NET Core 2.1 Preview 1 SDK (TODO: Add link), and set `TargetFramework` to `netcoreapp2.1' in your .csproj.
+2. Install the [.NET Core 2.1 Preview 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1), and set `TargetFramework` to `netcoreapp2.1' in your .csproj.
 3. Open up your launch.json file. If you aren't familiar with launch.json or debugging .NET Core in VS Code see [here](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger.md).
 4. If, in step 2, you changed your app to target netcoreapp2.1, make sure to update the path in the `program` to also point at the `netcoreapp2.1`.
 
