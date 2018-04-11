@@ -64,8 +64,8 @@ On the IDE computer:
 
 ## Build and Deploy
 On the IDE computer:
-* In your application's root folder, run `dotnet build`
-* Copy all the files under `bin/Debug/netcoreapp2.1/` to your `linux-arm` device.
+* In your application's root folder, run `dotnet publish`
+* Copy all the files under `bin/Debug/netcoreapp2.1/publish` to your `linux-arm` device.
     * To test run your application, on `linux-arm`, run the entrypoint `MyConsoleApp.dll` with `dotnet`.
         ```bash
         $ ~/dotnet/dotnet MyConsoleApp.dll
