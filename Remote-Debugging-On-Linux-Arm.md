@@ -31,7 +31,7 @@ Choose **one** of the following deployment methods:
 * Install the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). On Raspbian, the only thing missing is libunwind8.
 * Run the following command on `linux-arm` *(installs to ~/vsdbg)*:
 ```
-curl -sSL https://aka.ms/getvsdbgshbeta | bash /dev/stdin -r linux-arm -v latest -l ~/vsdbg
+curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -r linux-arm -v latest -l ~/vsdbg
 ```
 
 # Framework-Dependent Deployment
