@@ -3,7 +3,7 @@ With the Windows 10 Creators Update (Windows version 10.0.15063), you can use Vi
 This page will walk you through the steps required to debug a .NET core application on WSL.
 
 ## Prerequisites
-* [Windows 10 Creators Update with Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and Bash installed.
+* Windows 10 Creators Update or newer with [Windows Subsystem for Linux](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) and Bash installed.
 * .NET Core on WSL
 * Visual Studio Code 
 * Microsoft C# extension for VSCode. 
@@ -38,15 +38,23 @@ curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 
 This will download and install the debugger at `~/vsdbg/vsdbg`. This will be used later as the `debuggerPath`.
 
-## Sample launch configuration
+## Configuring debugging
+
+VS Code uses json files to configure how your application is debugged and built. There are two files that we need to configure --
+* \<your-open-folder\>/.vscode/launch.json: This provides an array of different configurations you can use to launch your application. There is a drop down in the Debug view for selecting which configuration is active.
+* \<your-open-folder\>/.vscode/tasks.json: This provides an array of different tasks, like building your application, that you can execute. Debug configurations can link to one of these tasks through the `preLaunchTask` property.
+
+The rest of this page will provide examples of how launch.json and tasks.json should be configured to support WSL.
+
+## Sample launch.json configuration
 
 ```json
         {
            "name": ".NET Core WSL Launch",
            "type": "coreclr",
            "request": "launch",
-           "preLaunchTask": "build",
-           "program": "/mnt/c/temp/dotnetapps/wslApp/bin/Debug/netcoreapp1.1/wslApp.dll",
+           "preLaunchTask": "publish",
+           "program": "/mnt/c/temp/dotnetapps/wslApp/bin/publish/wslApp.dll",
            "args": [],
            "cwd": "/mnt/c/temp/dotnetapps/wslApp",
            "stopAtEntry": false,
@@ -60,12 +68,35 @@ This will download and install the debugger at `~/vsdbg/vsdbg`. This will be use
        }
 ```
 
+## Sample publish task for tasks.json
+
+```
+{
+    "version": "2.0.0",
+    "tasks": [
+        ...,
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/wslApp.csproj",
+                "-o",
+                "${workspaceFolder}/bin/publish"
+            ]
+        }
+    ]
+}
+```
+
 The sample application shown here was created in the Windows path `C:\temp\dotnetapps\wslApp`. WSL by default allows windows paths to be accessible through `/mnt/<driveletter>/<path>`, so the path above is accessible as `/mnt/c/temp/dotnetapps/wslApp` from WSL. 
 
-Note:
-1. `preLaunchTask` executes ```dotnet build```, which builds the project on Windows. Since coreclr is cross-platform, the binary can be executed on WSL without any extra work.
+Notes:
+1. `preLaunchTask` executes ```dotnet publish```, which builds the project on Windows. Since coreclr is cross-platform, the binary can be executed on WSL without any extra work.
 2. `pipeProgram` is set to bash.exe. 
 3. `debuggerPath` points to vsdbg, the coreclr debugger.
+4. This will not support programs that want to read from the console.
 
 ## Sample attach configuration
 
@@ -87,9 +118,9 @@ Note:
 1. `"processId": "${command:pickRemoteProcess}"` lists the processes running on WSL using the pipe program. 
 2. `quoteArgs` will quote any arguments and debugger commands with spaces if set to `true`. 
 
-Note: 
-* Use `sourceFileMap` to map sources if they are available in a different location than where they were built. 
-* File and paths are case sensitive in Linux.
+Notes: 
+1. Use `sourceFileMap` to map sources if they are available in a different location than where they were built. If you build your project in Linux, make sure to add a map from the /mnt drive letters. Example: `"sourceFileMap": { "/mnt/c/": "c:\\" }`
+2. File and paths are case sensitive in Linux.
 
 ## Also see
 [Configuring C# Launch.json](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md)
