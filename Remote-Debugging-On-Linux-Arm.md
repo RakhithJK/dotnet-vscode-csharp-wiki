@@ -13,7 +13,7 @@ Choose **one** of the following deployment methods:
 # Prerequisites
 
 ## Install .NET Core 2.1 SDK locally (IDE computer)
-* The Preview 1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
+* The RC1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
 * Ensure that .NET Command Line Tools v2.1 or higher is installed
     * Run `dotnet --info` to verify.
 
@@ -39,11 +39,11 @@ Framework-dependent deployments are when the application is deployed without a c
 
 ## Install prerequisites
 * [General prerequisites](#prerequisites)
-* On the target computer, install a `linux-arm` build of the .NET Core runtime. The preview1 runtime is at https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-preview1-26216-03/dotnet-runtime-2.1.0-preview1-26216-03-linux-arm.tar.gz.
+* On the target computer, install a `linux-arm` build of the .NET Core runtime. The rc1 runtime is at https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-rc1/dotnet-runtime-2.1.0-rc1-linux-arm.tar.gz. Other versions can be found by looking at the [arm docker file](https://github.com/dotnet/dotnet-docker/blob/master/2.1/runtime/stretch-slim/arm32v7/Dockerfile).
 
     *Example (installs to ~/dotnet):*
     ```
-    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-preview1-26216-03/dotnet-runtime-2.1.0-preview1-26216-03-linux-arm.tar.gz | 
+    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-rc1/dotnet-runtime-2.1.0-rc1-linux-arm.tar.gz | 
     tar xvzf /dev/stdin -C ~/dotnet
     ```
 NOTE: To use a daily build, use https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz instead.
