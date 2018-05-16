@@ -26,7 +26,7 @@ lxrun /uninstall /full
 lxrun /install
 ```
 
-Go to [https://www.microsoft.com/net/core#linuxubuntu](https://www.microsoft.com/net/core#linuxubuntu) follow the instructions to install .NET core in WSL. You will need to follow the 16.04 instructions.
+Go to [https://www.microsoft.com/net/learn/get-started/linux/ubuntu16-04](https://www.microsoft.com/net/learn/get-started/linux/ubuntu16-04) follow the instructions to install .NET core in WSL. You will need to follow the 16.04 instructions.
 
 ## Install the debugger
 You can download a copy of the debugger with:
