@@ -13,19 +13,7 @@ Choose **one** of the following deployment methods:
 # Prerequisites
 
 ## Install .NET Core 2.1 SDK locally (IDE computer)
-* The RC1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
-* Ensure that .NET Command Line Tools v2.1 or higher is installed
-    * Run `dotnet --info` to verify.
-
-        *Example:*
-        ```bash
-         $ dotnet --info
-        .NET Command Line Tools (2.1.300-preview1-008174)
-        
-        Product Information:
-        Version:            2.1.300-preview1-008174
-        ...
-        ```
+The RC1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
 
 ## Install the debugger for `linux-arm` (target computer)
 * Install the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). On Raspbian, the only thing missing is libunwind8.
