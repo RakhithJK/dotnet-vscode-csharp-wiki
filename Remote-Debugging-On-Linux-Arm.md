@@ -16,7 +16,7 @@ Choose **one** of the following deployment methods:
 The RC1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
 
 ## Install the debugger for `linux-arm` (target computer)
-* Install the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). On Raspbian, the only thing missing is libunwind8.
+* Install the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). On Raspbian, install Curl and unzip if it they already installed (`sudo apt-get install curl`).
 * Run the following command on `linux-arm` *(installs to ~/vsdbg)*:
 ```
 curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -r linux-arm -v latest -l ~/vsdbg
