@@ -13,4 +13,4 @@ To enable the Desktop CLR debugger, change the configuration type in launch.json
 }
 ```
 
-More information about debugging desktop .net framework can be found here, https://stackoverflow.com/questions/47707095
+More information about debugging desktop .net framework can be found here, https://stackoverflow.com/questions/47707095.
