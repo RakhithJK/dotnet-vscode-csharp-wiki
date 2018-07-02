@@ -1,12 +1,13 @@
 # Debugging into .NET Core 2.1
 
-Starting with .NET Core 2.1 Preview 1 and C# Extension version 1.15, it is possible to fairly easily debug into the .NET Framework itself. For preview 1 builds, this is currently only possible for ASP.NET assemblies, but it should work for all of the .NET Framework assemblies before the final build of 2.1 ships.
+Starting with .NET Core 2.1 and C# Extension version 1.15, it is possible to easily debug into the .NET Framework itself.  
 
 ### Preparation steps:
-1. Install the latest 1.15 beta. [Instructions are here](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-Beta-Releases).
-2. Install the [.NET Core 2.1 Preview 1 SDK](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-preview1), and set `TargetFramework` to `netcoreapp2.1' in your .csproj.
+1. Confirm you OmniSharp C# VSCode extension 1.15 or later version installed into VSCode by selecting View->Extentions.  If not update your 'C# For Visual Stuiod Code (powered by OmniSharp)' extension.  
+2. Make sure you have at least version 2.1 of .NET Core installed on your machine.   Typing 'dotnet --version' will do this.   The lastest version of .NET Core can be downloaded from  https://www.microsoft.com/net/download.  
+3. Set TargetFramework to `netcoreapp2.1' in your .csproj.
 3. Open up your launch.json file. If you aren't familiar with launch.json or debugging .NET Core in VS Code see [here](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger.md).
-4. If, in step 2, you changed your app to target netcoreapp2.1, make sure to update the path in the `program` to also point at the `netcoreapp2.1`.
+4. If, in step 3, you changed your app to target netcoreapp2.1, make sure to update the path in the `program` to also point at the `netcoreapp2.1`.
 
 ### Turning on .NET Framework stepping
 Open your launch.json file, and add the following entries to the end of your current configuration. 
@@ -49,7 +50,9 @@ This environment variable tells the .NET Runtime that it should ignore the ahead
 
 # Debugging into .NET Core 1.0, 1.1 or 2.0
 
-The versions of .NET Core before 2.1 didn't publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://aka.ms/SourceLinkSpec). So, while it is certainly possible to debug into the .NET Framework before 2.1, it is *much* harder.
+The versions of .NET Core before 2.1 didn't uniformly publish their Portable PDBs on the Microsoft Symbol Server, and they weren't compiled with [Source Link](https://aka.ms/SourceLinkSpec).   Some (2.0.X version were updated by hand, so you can try the procedure above on apps using those version of the runtime and they might work, but the guidance is to upgrade to 2.1 (it should be painless) 
+
+If you can't upgrade the runtime, and simply trying it did not work, then it is still possible to debug through the framework but you need to basically build it yourself (so you have PDBs and the source code locally).   (Obviously this is not nearly as convenient, but it you can do it in less than one hour).  
 
 Here is what you would need to do:
 
