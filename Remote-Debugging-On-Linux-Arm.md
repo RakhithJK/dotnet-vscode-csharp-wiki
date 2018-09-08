@@ -29,7 +29,7 @@ Framework-dependent deployments are when the application is deployed without a c
 
     *Example (installs to ~/dotnet):*
     ```
-    mkdir ~/dotnet & curl -sSL hhttps://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.3/dotnet-runtime-2.1.3-linux-arm.tar.gz | 
+    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.3/dotnet-runtime-2.1.3-linux-arm.tar.gz | 
     tar xvzf /dev/stdin -C ~/dotnet
     ```
 
