@@ -1,4 +1,4 @@
-The extension supports remote debugging netcoreapp 2.1 on `linux-arm`. Debugging does not support netcoreapp 2.0. The extension has been tested against **`Raspbian 8 and 9`**. Please let us know if you run into issues with other distributions.
+The extension supports remote debugging netcoreapp 2.1 or newer on `linux-arm`. Debugging does **not** support netcoreapp 2.0. The extension has been tested against **`Raspbian 8 and 9`**. Please let us know if you run into issues with other distributions.
 
 If you run into any problems, please file an [issue](https://github.com/omnisharp/omnisharp-vscode) and note in the text that this is related to `linux-arm`. 
 
