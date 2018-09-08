@@ -1,5 +1,3 @@
-***This is a beta release feature***
-
 The extension supports remote debugging netcoreapp 2.1 on `linux-arm`. Debugging does not support netcoreapp 2.0. The extension has been tested against **`Raspbian 8 and 9`**. Please let us know if you run into issues with other distributions.
 
 If you run into any problems, please file an [issue](https://github.com/omnisharp/omnisharp-vscode) and note in the text that this is related to `linux-arm`. 
@@ -13,7 +11,7 @@ Choose **one** of the following deployment methods:
 # Prerequisites
 
 ## Install .NET Core 2.1 SDK locally (IDE computer)
-The RC1 SDK can be found [here](https://www.microsoft.com/net/download/dotnet-core/sdk-2.1.300-rc1). You can also use [daily builds](https://github.com/dotnet/cli#installers-and-binaries) if you need to be even newer.
+See [microsoft.com](https://www.microsoft.com/net/learn/get-started-with-dotnet-tutorial) for links to the SDK and instructions.
 
 ## Install the debugger for `linux-arm` (target computer)
 * Install the [native dependencies of .NET Core](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x). On Raspbian, this should only mean installing Curl and unzip if it they aren't already installed (`sudo apt-get install curl`).
@@ -27,28 +25,17 @@ Framework-dependent deployments are when the application is deployed without a c
 
 ## Install prerequisites
 * [General prerequisites](#prerequisites)
-* On the target computer, install a `linux-arm` build of the .NET Core runtime. The rc1 runtime is at https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-rc1/dotnet-runtime-2.1.0-rc1-linux-arm.tar.gz. Other versions can be found by looking at the [arm docker file](https://github.com/dotnet/dotnet-docker/blob/master/2.1/runtime/stretch-slim/arm32v7/Dockerfile).
+* On the target computer, install a `linux-arm` build of the .NET Core runtime. As of this editing the latest 2.1 version can be found at https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.3/dotnet-runtime-2.1.3-linux-arm.tar.gz. See the [arm docker file](https://github.com/dotnet/dotnet-docker/blob/master/2.1/runtime/stretch-slim/arm32v7/Dockerfile) to find the latest version number.
 
     *Example (installs to ~/dotnet):*
     ```
-    mkdir ~/dotnet & curl -sSL https://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.0-rc1/dotnet-runtime-2.1.0-rc1-linux-arm.tar.gz | 
+    mkdir ~/dotnet & curl -sSL hhttps://dotnetcli.blob.core.windows.net/dotnet/Runtime/2.1.3/dotnet-runtime-2.1.3-linux-arm.tar.gz | 
     tar xvzf /dev/stdin -C ~/dotnet
     ```
-NOTE: To use a daily build, use https://dotnetcli.blob.core.windows.net/dotnet/Runtime/master/dotnet-runtime-latest-linux-arm.tar.gz instead.
 
 ## Create a new console project
 On the IDE computer:
 * Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
-    * [The restoring of the NuGet packages may fail with an error](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
-        * Create a `nuget.config` file with the following block:
-        ``` xml
-        <configuration>
-			  <packageSources>
-			    <add key="dotnet-myget" value="https://dotnet.myget.org/F/dotnet-core/api/v3/index.json" />
-			  </packageSources>
-        </configuration> 
-        ```
-        * Run `dotnet restore --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json`. 
 
 ## Build and Deploy
 On the IDE computer:
@@ -130,17 +117,7 @@ Self-contained deployments are when all of an applications' dependencies are car
 ## Create a new console project
 On the IDE computer:
 * Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
-    * [The NuGet package restoral may fail to get the necessary packages](https://github.com/dotnet/cli#installers-and-binaries). To download the NuGet packages that match the daily build, you can choose **either** option below:
-        * Create a `nuget.config` file with the following block:
-        ``` xml
-        <configuration>
-			  <packageSources>
-			    <add key="dotnet-myget" value="https://dotnet.myget.org/F/dotnet-core/api/v3/index.json" />
-			  </packageSources>
-        </configuration> 
-        ```
-        * Run `dotnet restore --source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json`. 
-
+ 
 ## Build and Deploy
 On the IDE computer:
 * Run `dotnet publish -r linux-arm`
