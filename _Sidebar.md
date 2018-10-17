@@ -17,3 +17,7 @@
 * [[Installing Beta Releases]]
 * [Linux Support](https://github.com/OmniSharp/omnisharp-vscode/wiki/C%23-Extension-support-for-new-Linux-Distros-with-.NET-Core)
 * [Run/Debug Unit Tests](https://github.com/OmniSharp/omnisharp-vscode/wiki/How-to-run-and-debug-unit-tests)
+
+**Developer Guide**
+
+* [[Writing tests]]
