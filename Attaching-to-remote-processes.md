@@ -34,14 +34,14 @@ ssh ExampleAccount@ExampleTargetComputer echo "Hello World"
 
 As the last server setup step, we need to download VSDBG (the .NET Core command line debugger) onto the server. The easiest way to do this is by running the following command. Replace '~/vsdbg' with wherever you want VSDBG installed to.
 
-`curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l ~/vsdbg`  
-  
+`curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l ~/vsdbg`
 
+##### Using wget
 If you are on a system that uses wget instead of curl, here is the wget equivalent:
 
-`wget https://aka.ms/getvsdbgsh -O - 2>/dev/null | /bin/sh /dev/stdin -v latest -l ~/vsdbg`  
-  
+`wget https://aka.ms/getvsdbgsh -O - 2>/dev/null | /bin/sh /dev/stdin -v latest -l ~/vsdbg`
 
+##### Using PowerShell
 If you want to download vsdbg on Windows and then copy it to your Linux/Mac computer/container, you can use the .ps1 script with this one-liner. Other supported `RuntimeID` values are `linux-musl-x64`, `linux-arm` and `osx`.
 
 `powershell -NoProfile -ExecutionPolicy unrestricted -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -useb 'https://aka.ms/getvsdbgps1')))  -Version latest -RuntimeID linux-x64 -InstallPath c:\vsdbg\linux-x64"`
