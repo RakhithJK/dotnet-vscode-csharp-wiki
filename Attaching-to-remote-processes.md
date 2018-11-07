@@ -1,4 +1,4 @@
-The C# extension has supported local debugging for quite some time, and remote launch for a few months. With the 1.5 release it is now possible to attach as well. This wiki page will guide you through the steps to enable this. This guide is largely for SSH, but the mechanism is flexible, and other transports (Docker for example) can also be used.
+This page explains how to setup remote debugging with the C# extension.
 
 ### Setting up SSH
 
@@ -30,19 +30,29 @@ ssh ExampleAccount@ExampleTargetComputer echo "Hello World"
 
 (Where ExampleAccount and ExampleTargetComputer should be replaced with appropriate values)
 
-#### Installing VSDBG on the server
+### Installing VSDBG on the server
 
 As the last server setup step, we need to download VSDBG (the .NET Core command line debugger) onto the server. The easiest way to do this is by running the following command. Replace '~/vsdbg' with wherever you want VSDBG installed to.
 
-    curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
+`curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l ~/vsdbg`  
+  
 
-### Configuring launch.json
+If you are on a system that uses wget instead of curl, here is the wget equivalent:
+
+`wget https://aka.ms/getvsdbgsh -O - 2>/dev/null | /bin/sh /dev/stdin -v latest -l ~/vsdbg`  
+  
+
+If you want to download vsdbg on Windows and then copy it to your Linux/Mac computer/container, you can use the .ps1 script with this one-liner. Other supported `RuntimeID` values are `linux-musl-x64`, `linux-arm` and `osx`.
+
+`powershell -NoProfile -ExecutionPolicy unrestricted -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; &([scriptblock]::Create((Invoke-WebRequest -useb 'https://aka.ms/getvsdbgps1')))  -Version latest -RuntimeID linux-x64 -InstallPath c:\vsdbg\linux-x64"`
+
+### Configuring SSH attach with launch.json
 
 Now that we have our target machine ready to go, its time to configure your project. Open up .vscode/launch.json in VS Code, and add a new configuration to the end similar to the following:
 
 ```json
         {
-            "name": ".NET Core Remote Attach",
+            "name": ".NET Core SSH Attach",
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickRemoteProcess}",
@@ -82,6 +92,35 @@ There are two special concerns in this area when it comes to debugging:
 1. Debug vs. Release Configuration: If you are going to be debugging, the experience is going to be much better if the debug configuration of your application is running instead of the release configuration. If this isn't possible, one can debug release code. To do this, disable [justMyCode](https://github.com/OmniSharp/omnisharp-vscode/blob/release/debugger.md#just-my-code) in launch.json.
 2. PDB files: In order for VSDBG to be able to be able to map executable code back to its source code (or vice versa) VSDBG needs to have PDB files. If you are already building your application on the target server, this is taken care of for you. If you are building it somewhere else, you need to make sure to copy the PDB files next to their associated dll or set the DebugType to 'embedded' so that the PDB data is kept inside of the compiled dll.
 
+### Configuring Docker attach with launch.json
+
+If you are using Docker instead of SSH, here is what your launch.json might look like:
+
+```json
+        {
+            "name": ".NET Core Docker Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "my_container_name" ],
+                "debuggerPath": "/root/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            },
+            "sourceFileMap": {
+                "/home/ExampleAccount/ExampleProject": "${workspaceRoot}"
+            }
+        }
+```
+
+Here are additional notes about what these options are doing (see the SSH instructions for more information):
+* `processId`: Just like for SSH, 'command:pickRemoteProcess' instructs Visual Studio code to bring up UI to select the process to attach to. This requires your container to have `ps`. If it doesn't, you can install it (on most distros using the 'procps' package), or you change this to a process id if you know what you want to debug.
+* `pipeTransport.pipeArgs`: Docker requires the name of the container to execute in, so make sure to replace `my_container_name` what what you really want.
+* `pipeTransport.debuggerPath`: This is the path to where VSDBG is running on the target container. You can either change your container's build instructions to always include a version of vsdbg, or you can shell into the container before you start debugging to download it (example: `docker exec -it my_container_name /bin/sh`). See [Installing VSDBG on the server](#installing-vsdbg-on-the-server) for more information.
+* `quoteArgs`: The Docker CLI does NOT expect the command line for vsdbg to be quoted, so set this to `false`.
+
 ## Troubleshooting Attaching to Mac
 
 ### Enable Logging
@@ -117,4 +156,3 @@ and if you are on VsCode, you should see the stderr message:
 ``` vmmap[6174]: [fatal] unable to ask for permission to examine process; run tool using sudo, or without redirecting stdin and stderr. ```
 
 Most likely that Developer Mode is not enabled on your mac machine. You can enable it by typing ```sudo DevToolsSecurity --enable```
-
