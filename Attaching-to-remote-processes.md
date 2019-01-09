@@ -1,4 +1,4 @@
-This page explains how to setup remote debugging with the C# extension.
+The C# extension supports attaching to processes running on remote machines/containers. It does so in a flexible way that only requires a transport program (example:  `ssh`, `docker exec`, `kubectl exec`, etc) which can prove a remote unix-like shell to the target system.
 
 ### Setting up SSH
 
