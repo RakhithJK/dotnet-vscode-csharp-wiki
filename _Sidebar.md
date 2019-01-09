@@ -5,6 +5,7 @@
 * [Feature List](https://github.com/OmniSharp/omnisharp-vscode/wiki/.NET-Core-debugging-feature-list)
 * [Enable Logging](https://github.com/OmniSharp/omnisharp-vscode/wiki/Enabling-C%23-debugger-logging)
 * [[Portable PDBs]]
+* [[Troubleshoot Breakpoints]]
 * [[Attaching to remote processes]]
 * [[Remote Debugging On Linux-Arm]]
 * [[Windows Subsystem for Linux]]
