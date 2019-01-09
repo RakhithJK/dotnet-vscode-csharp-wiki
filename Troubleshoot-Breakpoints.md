@@ -2,6 +2,7 @@
 
 When debugging, a breakpoint has two possible visual states: a solid red circle and a hollow grey circle. If the debugger is able to successfully set a breakpoint in the target process, it will stay a solid red circle. If the breakpoint is a hollow circle a warning has occurred when trying to set the breakpoint. To see the warning, hover over the breakpoint in the debug view:
 
+![Breakpoints Window](https://raw.githubusercontent.com/wiki/OmniSharp/omnisharp-vscode/images/breakpoints-window.png)
 
 The following two sections describe prominent warnings and how to fix them. 
 
