@@ -116,7 +116,7 @@ If you are using Docker instead of SSH, here is what your launch.json might look
 ```
 
 Here are additional notes about what these options are doing (see the SSH instructions for more information):
-* `processId`: Just like for SSH, 'command:pickRemoteProcess' instructs Visual Studio code to bring up UI to select the process to attach to. This requires your container to have `ps`. If it doesn't, you can install it (on most distros using the 'procps' package), or you change this to a process id if you know what you want to debug.
+* `processId`: Just like for SSH, 'command:pickRemoteProcess' instructs Visual Studio code to bring up UI to select the process to attach to. This requires your container to have `ps`. If it doesn't, you can install it (on most distros using the 'procps' package), or you change this to a process id if you know what you want to debug. Alpine based containers do have ps, but the default version doesn't handle the required arguments, so you will need to install procps, with something like: RUN apk --no-cache add procps.
 * `pipeTransport.pipeArgs`: Docker requires the name of the container to execute in, so make sure to replace `my_container_name` what what you really want.
 * `pipeTransport.debuggerPath`: This is the path to where VSDBG is running on the target container. You can either change your container's build instructions to always include a version of vsdbg, or you can shell into the container before you start debugging to download it (example: `docker exec -it my_container_name /bin/sh`). See [Installing VSDBG on the server](#installing-vsdbg-on-the-server) for more information.
 * `quoteArgs`: The Docker CLI does NOT expect the command line for vsdbg to be quoted, so set this to `false`.
