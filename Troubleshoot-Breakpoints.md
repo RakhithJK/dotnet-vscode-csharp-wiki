@@ -4,7 +4,9 @@ When debugging, a breakpoint has two possible visual states: a solid red circle 
 
 ![Breakpoints Window](https://raw.githubusercontent.com/wiki/OmniSharp/omnisharp-vscode/images/breakpoints-window.png)
 
-The following two sections describe prominent warnings and how to fix them. 
+The following two sections describe prominent warnings and how to fix them.
+
+NOTE: If you have an app that exits immediately so that you cannot read the message in time, you can add a call to `System.Threading.Thread.Sleep(-1);` in your Main method.
 
 ### "No Symbols have been loaded for this document" 
 
