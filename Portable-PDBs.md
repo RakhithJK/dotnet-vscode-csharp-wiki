@@ -5,9 +5,9 @@ More information about portable PDBs can be found on the [.NET team's GitHub pag
 
 ## How to Generate Portable PDBs
 ### .csproj 
-With .NET Core projects .csproj's (the new type of project supported by VS 2017 or newer), Portable PDBs are already enabled by default. 
+With .NET Core "SDK"-style .csproj's, Portable PDBs are already enabled by default. 
 
-For other .csproj files such as portable class libraries (PCLs), portable PDBs can be explicitly enabled by modifying the 'DebugType' property in the .csproj file to –
+For older .csproj files such as portable class libraries (PCLs) or the default in full .NET Framework applications, portable PDBs can be explicitly enabled by modifying the 'DebugType' property in the .csproj file to –
 
         <DebugType>portable</DebugType>
 
