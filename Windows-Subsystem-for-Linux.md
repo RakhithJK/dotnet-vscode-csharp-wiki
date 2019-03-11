@@ -33,7 +33,7 @@ You can download a copy of the debugger with:
 
 ```
 sudo apt-get install unzip
-curl -ssl https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
+curl --ssl https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 ```
 
 This will download and install the debugger at `~/vsdbg/vsdbg`. This will be used later as the `debuggerPath`.
