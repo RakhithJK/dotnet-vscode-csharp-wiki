@@ -33,7 +33,7 @@ You can download a copy of the debugger with:
 
 ```
 sudo apt-get install unzip
-curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
+curl -ssl https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 ```
 
 This will download and install the debugger at `~/vsdbg/vsdbg`. This will be used later as the `debuggerPath`.
@@ -70,7 +70,7 @@ The rest of this page will provide examples of how launch.json and tasks.json sh
 
 ## Sample 'publish' task for tasks.json (needed for launching)
 
-```
+```json
 {
     "version": "2.0.0",
     "tasks": [
