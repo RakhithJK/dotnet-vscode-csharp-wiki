@@ -10,7 +10,7 @@ Choose **one** of the following deployment methods:
 
 # Prerequisites
 
-## Install .NET Core 2.1 SDK locally (IDE computer)
+## Install .NET Core 2.1 (or newer) SDK locally (IDE computer)
 See [microsoft.com](https://www.microsoft.com/net/learn/get-started-with-dotnet-tutorial) for links to the SDK and instructions.
 
 ## Install the debugger for `linux-arm` (target computer)
@@ -35,12 +35,12 @@ Framework-dependent deployments are when the application is deployed without a c
 
 ## Create a new console project
 On the IDE computer:
-* Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
+* Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp console application called `MyConsoleApp`.
 
 ## Build and Deploy
 On the IDE computer:
 * In your application's root folder, run `dotnet publish`
-* Copy all the files under `bin/Debug/netcoreapp2.1/publish` to your `linux-arm` device.
+* Copy all the files under `bin/Debug/netcoreapp2.1/publish` to your `linux-arm` device (replace '2.1' with whatever framework you are targeting).
     * To test run your application, on `linux-arm`, run the entrypoint `MyConsoleApp.dll` with `dotnet`.
         ```bash
         $ ~/dotnet/dotnet MyConsoleApp.dll
@@ -116,12 +116,12 @@ Self-contained deployments are when all of an applications' dependencies are car
 
 ## Create a new console project
 On the IDE computer:
-* Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp v2.1 console application called `MyConsoleApp`.
+* Run `dotnet new console -n MyConsoleApp`. This will create a new netcoreapp console application called `MyConsoleApp`.
  
 ## Build and Deploy
 On the IDE computer:
 * Run `dotnet publish -r linux-arm`
-* Copy all the files under `bin/Debug/netcoreapp2.1/linux-arm/publish/` to `linux-arm`.
+* Copy all the files under `bin/Debug/netcoreapp2.1/linux-arm/publish/` to `linux-arm` (replace '2.1' with whatever framework you are targeting).
 * Test your application by running the standalone executable `MyConsoleApp`.
     ```bash
     $ ./MyConsoleApp
