@@ -16,9 +16,9 @@ Instructions:
 4. Change directories to the root of the repo
 5. Sync the repo to the point of the last release. You can run `git tag` to see all the release tags. Then run something like `git checkout -b installme v1.6.2` to create a new branch (called installme) at the point of the last release (v1.6.2 in that example).
 6. `npm i`
-7. `npm run compile`
-8. **If packaging on Windows:** Edit gulpfile.js and comment out [this throw statement](https://github.com/OmniSharp/omnisharp-vscode/blob/b5eebb25936b3d52120c3adfa9d257cf8c0dc004/gulpfile.js#L95).
-9. `node node_modules/gulp/bin/gulp.js package:offline`
+7. **If packaging on Windows:** If you are planning to install to a non-Windows computer, it is recommended to NOT package on Windows. If you must package on Windows, edit `tasks\offlinePackagingTasks.ts` and comment out [this throw statement](https://github.com/OmniSharp/omnisharp-vscode/blob/1279c53b2fcfdd1a9eb1cb985f0871d1ffb289e8/tasks/offlinePackagingTasks.ts#L79).
+8. `npm run compile`
+9. `npm run gulp vsix:offline:package`
 10. Select the .vsix file which has the correct platform for the target computer. Transfer this file to that machine and install the .vsix. Instructions on installing .vsix files can be found [here](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-Beta-Releases). 
 11. **If packaging on Windows:** If you packaged on Windows and are installing to another Windows computer, you are all set. Otherwise you need to do something to `chmod +x` all the executable files as this doesn't propagated properly if the packages are produced on Windows. To do this, `cd ~/.vscode/extensions/ms-vscode.csharp-1.6.2` (replace 1.6.2 with the version you installed; if you are using VS Code Insiders, replace .vscode with .vscode-insiders), and then `chmod +x` the necessary files. You can either do this with `chmod +x -R .` to make every file executable, or if you want to try and do this selectively, see the below appendix.
 
