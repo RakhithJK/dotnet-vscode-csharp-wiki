@@ -72,7 +72,7 @@ Now that we have our target machine ready to go, its time to configure your proj
 Here is what these options do:
 * `processId`: 'command:pickRemoteProcess' instructs Visual Studio code to bring up UI to select the process to attach to. You can also replace this with the process id of the process you would like to debug if for some reason you don't like the selection UI.
 * `pipeTransport.pipeProgram`: This an the executable which should be launched to provide a connection to the target computer. In this example we are using SSH, so this is the path to ssh client command.
-* `pipeTransport.pipeArgs`: This is any arguments to pass to the pipe program. For the SSH client library we need to provide the computer to connect to. To use SSH, replace ExampleAccount/ExampleTargetComputer with appropriate values.
+* `pipeTransport.pipeArgs`: This is any arguments to pass to the pipe program. For the SSH client library we need to provide the computer to connect to. To use SSH, replace ExampleAccount/ExampleTargetComputer with appropriate values. Note that you can use the value `${debuggerCommand}` if you need to place the command line of the debugger program someplace other than the end of this command line.
 * `pipeTransport.debuggerPath`: This is the path to where VSDBG is running on the target computer.
 * `sourceFileMap`: To debug programs built on computers other than the Visual Studio code computer, Visual Studio code needs to be hold how to map file paths. So, for example, if you are debugging 'ExampleProject' which was built in your home directory on the Linux server, and now you have the same code open in Visual Studio code, this rule tells the debugger to change any file paths that it sees in '/home/ExampleAccount/ExampleProject' and replace it with the open directory.
 * `quoteArgs`: Should arguments that contain characters that need to be quoted (example: spaces) be quoted? Defaults to 'true'. If set to false, the debugger command will no longer be automatically quoted.
@@ -156,3 +156,48 @@ and if you are on VsCode, you should see the stderr message:
 ``` vmmap[6174]: [fatal] unable to ask for permission to examine process; run tool using sudo, or without redirecting stdin and stderr. ```
 
 Most likely that Developer Mode is not enabled on your mac machine. You can enable it by typing ```sudo DevToolsSecurity --enable```
+
+### Debugger (vsdbg) is aborting
+
+If remote debugging is failing with an error message such as:
+
+    "The pipe program '<insert-pipe-program-name-here>' exited unexpectedly with code 1."
+
+And the output indicates that vsdbg was actually able to start (ex: you see the license banner print):
+
+```
+-------------------------------------------------------------------
+You may only use the Microsoft .NET Core Debugger (vsdbg) with
+Visual Studio Code, Visual Studio or Visual Studio for Mac software
+to help you develop and test your applications.
+-------------------------------------------------------------------
+```
+
+Then this likely means that the vsdbg process is aborting. A few troubleshooting steps:
+
+#### 1: Check for libicu compatibility
+
+See the [Testing libicu compatibility on Linux](https://github.com/OmniSharp/omnisharp-vscode/wiki/Testing-libicu-compatibility-on-Linux) page for more information.
+
+#### 2: Save a coredump of a possible vsdbg crash
+
+Another possible reason for the transport aborting is that vsdbg is crashing. To see if this is the problem and investigate why if it is, you can follow these steps.
+
+First, on the target computer, set /proc/sys/kernel/core_pattern is set to something valid. For example:
+
+```
+mkdir ~/crash_reports
+cd ~/crash_reports
+cp /proc/sys/kernel/core_pattern core_pattern.bak
+sudo sh -c 'echo "$(pwd)/%e-%p.cor" > /proc/sys/kernel/core_pattern'
+```
+More information on core_pattern can be found on [kernel.org](http://www.kernel.org/doc/Documentation/sysctl/kernel.txt).
+
+After core_pattern is configured, you then want to change your launch.json configuration to set `ulimit -c unlimited` before starting vsdbg. This can be done by adding `"ulimit -c unlimited && ${debuggerCommand}"` as another argument in `pipeArgs` in your launch.json file.
+
+Example:
+```
+    "pipeArgs": [ "-T", "ExampleAccount@ExampleTargetComputer", "ulimit -c unlimited && ${debuggerCommand}" ],
+```
+
+If all goes well this should result in a coredump being written to ~/crash_reports. You can then take a look at the coredump yourself using gdb, or share it with the debugger team.
