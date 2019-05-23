@@ -3,7 +3,7 @@
 Starting with .NET Core 2.1 and C# Extension version 1.15, it is possible to easily debug into the .NET Framework itself.  
 
 ### Preparation steps:
-1. Confirm you OmniSharp C# VSCode extension 1.15 or later version installed into VSCode by selecting View->Extentions.  If not update your 'C# For Visual Stuiod Code (powered by OmniSharp)' extension.  
+1. Confirm you OmniSharp C# VSCode extension 1.15 or later version installed into VSCode by selecting View->Extentions.  If not update your 'C# For Visual Studio Code (powered by OmniSharp)' extension.  
 2. Make sure you have at least version 2.1 of .NET Core installed on your machine.   Typing 'dotnet --version' will do this.   The lastest version of .NET Core can be downloaded from  https://www.microsoft.com/net/download.  
 3. Set TargetFramework to `netcoreapp2.1' in your .csproj.
 3. Open up your launch.json file. If you aren't familiar with launch.json or debugging .NET Core in VS Code see [here](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger.md).
