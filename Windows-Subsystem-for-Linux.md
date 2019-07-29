@@ -8,25 +8,7 @@ This page will walk you through the steps required to debug a .NET core applicat
 * Visual Studio Code 
 * Microsoft C# extension for VSCode. 
 
-Be sure to check the version of Ubuntu on WSL. The Windows 10 Creators Update comes with 16.04.2 LTS version of Ubuntu. You can confirm that by running the command below.
-
-```
-~$ cat /etc/os-release  | grep  -i version
-VERSION="16.04.2 LTS (Xenial Xerus)"
-VERSION_ID="16.04"
-VERSION_CODENAME=xenial
-```
-
-If you had upgraded to Windows Creators update and already had WSL installed, you might still have Ubuntu 14 in the WSL. If the version is 14, run the following commands in a cmd prompt to reinstall and update WSL. 
-
-_Note: These commands remove everything in your current WSL. Please be sure to save any files you wish to keep._
-
-```
-lxrun /uninstall /full
-lxrun /install
-```
-
-Go to [https://www.microsoft.com/net/learn/get-started/linux/ubuntu16-04](https://www.microsoft.com/net/learn/get-started/linux/ubuntu16-04) follow the instructions to install .NET core in WSL. You will need to follow the 16.04 instructions.
+Go to [https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install](https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install) follow the instructions to install .NET core in WSL. Change the 'Linux Distribution' drop down to the version you have installed.
 
 ## Install the debugger
 You can download a copy of the debugger with:
