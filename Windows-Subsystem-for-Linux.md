@@ -8,7 +8,7 @@ This page will walk you through the steps required to debug a .NET core applicat
 * Visual Studio Code 
 * Microsoft C# extension for VSCode. 
 
-Go to [https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install](https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install) follow the instructions to install .NET core in WSL. Change the 'Linux Distribution' drop down to the version you have installed.
+Go to [.NET Core SDK Linux install instructions](https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install?initial-os=linux) for steps to install the .NET Core SDK into WSL. Change the 'Linux Distribution' drop down to the version you have installed.
 
 ## Install the debugger
 You can download a copy of the debugger with:
