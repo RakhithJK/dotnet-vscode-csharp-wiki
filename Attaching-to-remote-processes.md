@@ -122,7 +122,7 @@ Here are additional notes about what these options are doing (see the SSH instru
 * `sourceFileMap`: To debug programs built on computers other than the Visual Studio code computer, Visual Studio code needs to be hold how to map file paths. So, for example, if you are debugging 'ExampleProject' which was built in your home directory on the Linux server, and now you have the same code open in Visual Studio code, this rule tells the debugger to change any file paths that it sees in '/home/ExampleAccount/ExampleProject' and replace it with the open directory.
 * `quoteArgs`: The Docker CLI does NOT expect the command line for vsdbg to be quoted, so set this to `false`.
 
-## Troubleshooting Attaching to Mac
+## Troubleshooting
 
 ### Enable Logging
 
@@ -139,42 +139,18 @@ Logging can be enabled by adding the following to your launch.json configuration
 
 ### Known Errors
 
-#### Developer Mode not Enabled
-If the process failed to attach and there is a similar event to the following:
-```javascript
-{
-   "event":"output",
-   "body": {
-   "category":"telemetry",
-   "output":"VS/Diagnostics/Debugger/vsdbg/AttachFailed",
-   "data":{
-      "VS.Diagnostics.Debugger.vsdbg.OSFamily":"Darwin",
-      "VS.Diagnostics.Debugger.vsdbg.ErrorCode":-2147024809
-}
-```
-
-and if you are on VsCode, you should see the stderr message: 
-``` vmmap[6174]: [fatal] unable to ask for permission to examine process; run tool using sudo, or without redirecting stdin and stderr. ```
-
-Most likely that Developer Mode is not enabled on your mac machine. You can enable it by typing ```sudo DevToolsSecurity --enable```
-
-### Debugger (vsdbg) is aborting
+### Pipe program exited unexpectedly
 
 If remote debugging is failing with an error message such as:
 
     "The pipe program '<insert-pipe-program-name-here>' exited unexpectedly with code 1."
 
-And the output indicates that vsdbg was actually able to start (ex: you see the license banner print):
+Then there are a few possibilities as to what is going on:
+    * Something may be incorrectly configured with the transport. Read more of the log to try and understand what this could be. Also try re-running your transport command to test your connection -- copy your pipeProgram/args to a terminal and have your pipe program execute something like `echo Hello World` to see if it working.
+    * If the target process is running in a Docker container, this could indicate that the container shutdown. For example because the additional memory used by the debugger caused the container to hit its memory limit.
+    * This could also indicate that vsdbg running in the container is crashing or being aborted. You can confirm or deny this by modifying the transport command line to run a script that would run vsdbg and then output vsdbg's exit code. For some transports, you may also be able to do this by just modifying `pipeArgs`, for example, add an arg of: `"${debuggerCommand}; echo \"vsdbg exited with code: $?\""`
 
-```
--------------------------------------------------------------------
-You may only use the Microsoft .NET Core Debugger (vsdbg) with
-Visual Studio Code, Visual Studio or Visual Studio for Mac software
-to help you develop and test your applications.
--------------------------------------------------------------------
-```
-
-Then this likely means that the vsdbg process is aborting. A few troubleshooting steps:
+If vsdbg is crashing or being aborted a few additional troubleshooting steps:
 
 #### 1: Check for libicu compatibility
 
@@ -202,3 +178,22 @@ Example:
 ```
 
 If all goes well this should result in a coredump being written to ~/crash_reports. You can then take a look at the coredump yourself using gdb, or share it with the debugger team.
+
+#### Developer Mode not Enabled on macOS
+If the process failed to attach and there is a similar event to the following:
+```javascript
+{
+   "event":"output",
+   "body": {
+   "category":"telemetry",
+   "output":"VS/Diagnostics/Debugger/vsdbg/AttachFailed",
+   "data":{
+      "VS.Diagnostics.Debugger.vsdbg.OSFamily":"Darwin",
+      "VS.Diagnostics.Debugger.vsdbg.ErrorCode":-2147024809
+}
+```
+
+and if you are on VsCode, you should see the stderr message: 
+``` vmmap[6174]: [fatal] unable to ask for permission to examine process; run tool using sudo, or without redirecting stdin and stderr. ```
+
+Most likely that Developer Mode is not enabled on your mac machine. You can enable it by typing ```sudo DevToolsSecurity --enable```
