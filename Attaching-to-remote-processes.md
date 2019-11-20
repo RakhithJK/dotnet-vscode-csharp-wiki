@@ -146,9 +146,9 @@ If remote debugging is failing with an error message such as:
     "The pipe program '<insert-pipe-program-name-here>' exited unexpectedly with code 1."
 
 Then there are a few possibilities as to what is going on:
-    * Something may be incorrectly configured with the transport. Read more of the log to try and understand what this could be. Also try re-running your transport command to test your connection -- copy your pipeProgram/args to a terminal and have your pipe program execute something like `echo Hello World` to see if it working.
-    * If the target process is running in a Docker container, this could indicate that the container shutdown. For example because the additional memory used by the debugger caused the container to hit its memory limit.
-    * This could also indicate that vsdbg running in the container is crashing or being aborted. You can confirm or deny this by modifying the transport command line to run a script that would run vsdbg and then output vsdbg's exit code. For some transports, you may also be able to do this by just modifying `pipeArgs`, for example, add an arg of: `"${debuggerCommand}; echo \"vsdbg exited with code: $?\""`
+* Something may be incorrectly configured with the transport. Read more of the log to try and understand what this could be. Also try re-running your transport command to test your connection -- copy your pipeProgram/args to a terminal and have your pipe program execute something like `echo Hello World` to see if it working.
+* If the target process is running in a Docker container, this could indicate that the container shutdown. For example because the additional memory used by the debugger caused the container to hit its memory limit.
+* This could also indicate that vsdbg running in the container is crashing or being aborted. You can confirm or deny this by modifying the transport command line to run a script that would run vsdbg and then output vsdbg's exit code. For some transports, you may also be able to do this by just modifying `pipeArgs`, for example, add an arg of: `"${debuggerCommand}; echo \"vsdbg exited with code: $?\""`
 
 If vsdbg is crashing or being aborted a few additional troubleshooting steps:
 
