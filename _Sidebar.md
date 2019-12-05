@@ -11,6 +11,7 @@
 * [[Windows Subsystem for Linux]]
 * [[Diagnosting 'Debug adapter process has terminated unexpectedly']]
 * [[Testing libicu compatibility on Linux]]
+* [[Debugging into the .NET Framework itself]]
 
 **Documentation**
 
