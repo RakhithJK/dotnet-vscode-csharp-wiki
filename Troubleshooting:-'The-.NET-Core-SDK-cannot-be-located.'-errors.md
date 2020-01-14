@@ -6,7 +6,7 @@ This page contains more information about the error:
 
 What this error means is that this extension ran the command `dotnet` and `dotnet` was **NOT** found on the `PATH` within the extension's process.
 
-If you don't have the .NET Core SDK installed, fixing this error is usually simple enough: visit https://dot.net/core-sdk-vscode to download the .NET Core SDK.
+If you don't have the .NET Core SDK installed, fixing this error is usually simple enough: visit https://dot.net/core-sdk-vscode to download and install the .NET Core SDK.
 
 If you do have the .NET Core SDK installed, then this means that the directory containing `dotnet` (Linux and macOS) or `dotnet.exe` (Windows) is not on your `PATH`, at least in this extension's process. The rest of this page will provide advice on understanding why.
 
@@ -14,7 +14,7 @@ If you do have the .NET Core SDK installed, then this means that the directory c
 
 Before we get to a list of troubleshooting steps, lets first enumerate a few known reasons why this error happens:
 
-1. If you just installed the .NET SDK --
+1. If you very recently installed the .NET SDK --
    * If you had Visual Studio Code open at the time you installed the .NET SDK, and you haven't restarted it, you should do so.
    * On Windows, on some machines, environment variable changes don't immediately take effect. Restart your computer to see if that resolves this problem.
 2. If the .NET SDK was installed through Linux Snap - see [Linux Snap instructions](#linux-snap-instructions)
@@ -23,9 +23,9 @@ Before we get to a list of troubleshooting steps, lets first enumerate a few kno
 
 The first step in troubleshooting this problem is to see if this problem also happens is a terminal/shell. After you have launched a terminal or shell, type in `which dotnet`.
 
-If `which dotnet` produces a PATH, then the .NET SDK was able to successfully modify the PATH, but VS Code isn't picking it up. VS Code attempts to scrape the environment by launching the default shell. But this process can be fragile. You can attempt to work around this by starting VS Code from your Terminal. Alternatively, you can attempt to debug VS Code to understand what is going wrong -- at this time at least, the function to debug is [`getUnixShellEnvironment`](https://github.com/microsoft/vscode/blob/ab10e26096a5494b68bc709a405a0dddeb227e0b/src/vs/code/node/shellEnv.ts#L13).
+If `which dotnet` produces a PATH, then the .NET SDK was able to successfully modify the PATH, but VS Code isn't picking it up. VS Code attempts to scrape the environment by launching the default shell under the covers. But this process can be fragile. You can attempt to work around this by starting VS Code from your Terminal. Alternatively, you can attempt to debug VS Code to understand what is going wrong -- at this time at least, the function to debug is [`getUnixShellEnvironment`](https://github.com/microsoft/vscode/blob/ab10e26096a5494b68bc709a405a0dddeb227e0b/src/vs/code/node/shellEnv.ts#L13). Lastly, you could manually add a symbolic link from within a directory which is on the PATH in all processes to wherever `dotnet` is installed (see below for instructions).
 
-If `which dotnet` produces no output, then this means the .NET SDK wasn't able to modify the `PATH` or add a symbolic link, or the .NET SDK for your platform doesn't do so. You can fix this by either adding a symbolic link yourself (example: `sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet` where `/usr/share/dotnet/dotnet` should be replaced with wherever the .NET SDK installer for your platform was installed to), or by modifying your `PATH` yourself.
+If `which dotnet` produces no output, then this means the .NET SDK wasn't able to modify the `PATH` or add a symbolic link, or the .NET SDK for your platform doesn't do so. You can fix this by either adding a symbolic link yourself (example: `sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet` where `/usr/share/dotnet/dotnet` should be replaced with wherever the .NET SDK installer for your platform was installed to), or by modifying your `PATH` manually (example: modify ~/.bashrc add add something like `export PATH=$PATH:/new/directory/here`).
 
 ## General troubleshooting steps on Windows
 
