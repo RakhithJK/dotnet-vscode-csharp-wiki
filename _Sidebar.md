@@ -21,6 +21,7 @@
 * [Installing without internet connectivity](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-the-C%23-extension-to-a-computer-without-internet-connectivity)
 * [Linux Support](https://github.com/OmniSharp/omnisharp-vscode/wiki/C%23-Extension-support-for-new-Linux-Distros-with-.NET-Core)
 * [Run/Debug Unit Tests](https://github.com/OmniSharp/omnisharp-vscode/wiki/How-to-run-and-debug-unit-tests)
+* [Troubleshooting: 'The .NET Core SDK cannot be located.' errors](https://github.com/OmniSharp/omnisharp-vscode/wiki/Troubleshooting:-'The-.NET-Core-SDK-cannot-be-located.'-errors)
 
 **Developer Guide**
 
