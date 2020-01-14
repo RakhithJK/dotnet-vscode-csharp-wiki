@@ -21,7 +21,11 @@ Before we get to a list of troubleshooting steps, lets first enumerate a few kno
 
 ## General troubleshooting steps on Linux/Mac
 
-TODO
+The first step in troubleshooting this problem is to see if this problem also happens is a terminal/shell. After you have launched a terminal or shell, type in `which dotnet`.
+
+If `which dotnet` produces a PATH, then the .NET SDK was able to successfully modify the PATH, but VS Code isn't picking it up. VS Code attempts to scrape the environment by launching the default shell. But this process can be fragile. You can attempt to work around this by starting VS Code from your Terminal. Alternatively, you can attempt to debug VS Code to understand what is going wrong -- at this time at least, the function to debug is [`getUnixShellEnvironment`](https://github.com/microsoft/vscode/blob/ab10e26096a5494b68bc709a405a0dddeb227e0b/src/vs/code/node/shellEnv.ts#L13).
+
+If `which dotnet` produces no output, then this means the .NET SDK wasn't able to modify the `PATH` or add a symbolic link, or the .NET SDK for your platform doesn't do so. You can fix this by either adding a symbolic link yourself (example: `sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet` where `/usr/share/dotnet/dotnet` should be replaced with wherever the .NET SDK installer for your platform was installed to), or by modifying your `PATH` yourself.
 
 ## General troubleshooting steps on Windows
 
@@ -30,9 +34,20 @@ The first step in troubleshooting this problem is to see if this problem also ha
 * Start a command prompt:
     * Hit `WinKey+R` to bring up the Windows run dialog
     * Type in `cmd.exe`
-* When the command prompt starts, type in `where.exe dotnet`. 
+* When the command prompt starts, type in `where.exe dotnet`.
 
-TODO
+If the result of running `where.exe` is that a path to dotnet.exe is printed (example: `C:\Program Files\dotnet\dotnet.exe`) then the .NET SDK has successfully added itself to the Windows Path. There are no known reasons why PATH wouldn't be propagated to the VS Code process. You could try starting VS Code from the command prompt to see if that helps.
+
+If the result of running `where.exe` is a message like `INFO: Could not find files for the given pattern(s).` then the .NET SDK wasn't able to add itself to the PATH. You could try uninstalling and reinstalling the .NET SDK. You could also try examining the default path with the following steps:
+
+* Bring up System Properties:
+    * Windows 10 - On the Start Menu, search for 'This PC' and bring up properties
+    * Before - On the Start Menu, search for 'My Computer' and bring up properties
+* Go to the Advanced settings
+* Click the button for 'Environment Variables'
+* Find 'Path' in either the user or system list
+* See if the dotnet.exe directory (example: `C:\Program Files\dotnet`) is in the list. If not you could add it.
+* If it is in the list, you could see if maybe another directory has added it self incorrectly (example: added an opening quote without a trailing quote), or if the set of environment variables has grown very large -- there is a limit of 32,767 total characters.
 
 ## Special instructions
 
