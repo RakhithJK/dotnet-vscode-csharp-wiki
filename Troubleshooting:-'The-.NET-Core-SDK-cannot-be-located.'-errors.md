@@ -17,7 +17,7 @@ Before we get to a list of troubleshooting steps, lets first enumerate a few kno
 1. If you just installed the .NET SDK --
    * If you had Visual Studio Code open at the time you installed the .NET SDK, and you haven't restarted it, you should do so.
    * On Windows, on some machines, environment variable changes don't immediately take effect. Restart your computer to see if that resolves this problem.
-2. If the .NET SDK was installed through Linux snap - see [Linux snap instructions](#linux-snap-instructions)
+2. If the .NET SDK was installed through Linux Snap - see [Linux Snap instructions](#linux-snap-instructions)
 
 ## General troubleshooting steps on Linux/Mac
 
@@ -51,6 +51,23 @@ If the result of running `where.exe` is a message like `INFO: Could not find fil
 
 ## Special instructions
 
-#### Linux snap instructions
+#### Linux Snap instructions
 
-TODO
+The Linux Snap packages for the .NET Core SDK, by default, will not create the `dotnet` link. To do so, run `sudo snap alias dotnet-sdk.dotnet dotnet`. More information about this can be found in [the .NET Core SDK release notes](https://github.com/dotnet/core/blob/master/release-notes/3.1/3.1.0/3.1.0-install-instructions.md#install-using-snap).
+
+Note that, as of the time of this writing, there are also other incompatibilities between this extension and the .NET Core SDK Snap package beyond the `dotnet` PATH issue. This incompatibility may result in:
+
+> Some projects have trouble loading. Please review the output for more details.
+> It was not possible to find any installed .NET Core SDKs
+> Did you mean to run .NET Core SDK commands? Install a .NET Core SDK from:
+> 	https://aka.ms/dotnet-download
+
+More information about this problem can be found in [dotnet/cli#12110](https://github.com/dotnet/cli/issues/12110). One of the possible workarounds is to add the following to `~/.omnisharp/omnisharp.json`.
+
+```json
+{
+    "MSBuild": {
+        "UseLegacySdkResolver": true
+    }
+}
+```
