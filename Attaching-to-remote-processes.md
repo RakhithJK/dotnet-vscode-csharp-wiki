@@ -1,5 +1,7 @@
 The C# extension supports attaching to processes running on remote machines/containers. It does so in a flexible way that only requires a transport program (example:  `ssh`, `docker exec`, `kubectl exec`, etc) which can prove a remote unix-like shell to the target system.
 
+Note that while this page gives instructions for attach, it is also to launch a remote process. See the [[Remote Debugging On Linux-Arm]] page for examples.
+
 ### Setting up SSH
 
 In this section, we will walk through the steps for configuring SSH. If you are using Docker or some other transport, you can skip this.
@@ -121,6 +123,10 @@ Here are additional notes about what these options are doing (see the SSH instru
 * `pipeTransport.debuggerPath`: This is the path to where VSDBG is running on the target container. You can either change your container's build instructions to always include a version of vsdbg, or you can shell into the container before you start debugging to download it (example: `docker exec -it my_container_name /bin/sh`). See [Installing VSDBG on the server](#installing-vsdbg-on-the-server) for more information.
 * `sourceFileMap`: To debug programs built on computers other than the Visual Studio code computer, Visual Studio code needs to be hold how to map file paths. So, for example, if you are debugging 'ExampleProject' which was built in your home directory on the Linux server, and now you have the same code open in Visual Studio code, this rule tells the debugger to change any file paths that it sees in '/home/ExampleAccount/ExampleProject' and replace it with the open directory.
 * `quoteArgs`: The Docker CLI does NOT expect the command line for vsdbg to be quoted, so set this to `false`.
+
+### Launching
+
+
 
 ## Troubleshooting
 
