@@ -64,6 +64,8 @@ The rest of this page will provide examples of how launch.json and tasks.json sh
             "args": [
                 "publish",
                 "${workspaceFolder}/wslApp.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
                 "-o",
                 "${workspaceFolder}/bin/publish"
             ]
