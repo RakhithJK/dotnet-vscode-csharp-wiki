@@ -20,7 +20,7 @@ Instructions:
 8. `npm run compile`
 9. `npm run gulp vsix:offline:package`
 10. Select the .vsix file which has the correct platform for the target computer. Transfer this file to that machine and install the .vsix. Instructions on installing .vsix files can be found [here](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-Beta-Releases). 
-11. **If packaging on Windows:** If you packaged on Windows and are installing to another Windows computer, you are all set. Otherwise you need to do something to `chmod +x` all the executable files as this doesn't propagated properly if the packages are produced on Windows. To do this, `cd ~/.vscode/extensions/ms-vscode.csharp-1.6.2` (replace 1.6.2 with the version you installed; if you are using VS Code Insiders, replace .vscode with .vscode-insiders), and then `chmod +x` the necessary files. You can either do this with `chmod +x -R .` to make every file executable, or if you want to try and do this selectively, see the below appendix.
+11. **If packaging on Windows:** If you packaged on Windows and are installing to another Windows computer, you are all set. Otherwise you need to do something to `chmod +x` all the executable files as this doesn't propagated properly if the packages are produced on Windows. To do this, `cd ~/.vscode/extensions/ms-dotnettools.csharp-1.21.18` (replace 1.21.18 with the version you installed; if you are using VS Code Insiders, replace .vscode with .vscode-insiders), and then `chmod +x` the necessary files. You can either do this with `chmod +x -R .` to make every file executable, or if you want to try and do this selectively, see the below appendix.
 
 ### Appendix: Executable files on Linux as of 1.6.2 (may be useful for the last step)
 ```

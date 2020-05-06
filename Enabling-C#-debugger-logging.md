@@ -38,8 +38,8 @@ To do this:
 
 1. Open up a terminal (command prompt) window
 2. Change to the directory of the debugger. (NOTE: if you are using VS Code Insiders, change `.vscode` to `.vscode-insiders`)
-    * **Linux/macOS**: `cd ~/.vscode/extensions/ms-vscode.csharp-<insert-version-here>/.debugger`
-    * **Windows**: `cd /d C:\Users\<your-username>\.vscode\extensions\ms-vscode.csharp-<insert-version-here>\.debugger`
+    * **Linux/macOS**: `cd ~/.vscode/extensions/ms-dotnettools.csharp-<insert-version-here>/.debugger`
+    * **Windows**: `cd /d C:\Users\<your-username>\.vscode\extensions\ms-dotnettools.csharp-<insert-version-here>\.debugger`
 3. Run vsdbg-ui: `./vsdbg-ui --server --consoleLogging`
 4. Go back to VS Code and open your `.vscode\launch.json` file.
 5. Go to the section for of launch.json for your current launch configuration and add: `"debugServer": 4711`

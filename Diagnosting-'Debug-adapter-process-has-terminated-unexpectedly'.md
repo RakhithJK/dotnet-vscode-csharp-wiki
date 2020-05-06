@@ -63,8 +63,8 @@ Exception code: 0xc0000005
 Fault offset: 0x00000000002e3d3a
 Faulting process id: 0x2dd8
 Faulting application start time: 0x01d2cf58f1e7031e
-Faulting application path: C:\Users\greggm\.vscode\extensions\ms-vscode.csharp-1.9.0\.debugger\vsdbg-ui.exe
-Faulting module path: C:\Users\greggm\.vscode\extensions\ms-vscode.csharp-1.9.0\.debugger\vsdbg.DLL
+Faulting application path: C:\Users\greggm\.vscode\extensions\ms-dotnettools.csharp-1.21.18\.debugger\vsdbg-ui.exe
+Faulting module path: C:\Users\greggm\.vscode\extensions\ms-dotnettools.csharp-1.21.18\.debugger\vsdbg.DLL
 Report Id: 694807aa-44e0-42d3-8129-437f457a5efd
 Faulting package full name: 
 Faulting package-relative application ID: 
