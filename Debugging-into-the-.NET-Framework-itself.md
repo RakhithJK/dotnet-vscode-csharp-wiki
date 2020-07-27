@@ -46,3 +46,19 @@ This option disables optimizations when .NET Framework assemblies load. See [her
 > `"COMPlus_ZapDisable": "1"` and `"COMPlus_ReadyToRun": "0"`
 
 These environment variables tells the .NET Runtime that it should ignore the ahead-of-time compiled native code that is in many .NET Framework assemblies, and it should instead compile these assemblies to native code just-in-time. The `ZapDisable` version is for the older technology that CLR has for ahead-of-time compilation, and `ReadyToRun` is the newer version. If you are targeting .NET Core 3.0 or newer, there are no 'zaps' anymore, so only the later option matters. Together these are important because `"suppressJITOptimizations": true` doesn't affect assemblies that have already been compiled to native code. So the two options work together to make it so that the .NET Framework runs without optimizations.
+
+## Debugging into other open-source nuget packages
+
+If you would like to debug into other open-source nuget packages, such as Newtonsoft.Json, you can also enable `searchNuGetOrgSymbolServer`. Example:
+
+```json
+    "symbolOptions": {
+        "searchMicrosoftSymbolServer": true,
+        "searchNuGetOrgSymbolServer": true
+    }
+```
+
+A few notes:
+1. Not every library on nuget.org will have their .pdb files indexed. If you find that the debugger cannot find a pdb file for an open source library you are using, please encourage the open source library to upload their PDBs ([see here for instructions](https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages-snupkg)).
+2. Most libraries on nuget.org are **not** ahead-of-time compiled, so if you are only trying to debug into this library and not the .NET Framework itself, you can likely omit the `env` section from above. Using an optimized .NET Framework will significantly improve performance in some cases.
+3. Only Microsoft provided libraries will have their .pdb files on the Microsoft symbol server, so you can omit `searchMicrosoftSymbolServer` if you are only interested in an OSS library.
