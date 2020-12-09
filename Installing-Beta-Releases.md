@@ -23,3 +23,7 @@ First, find the release that you wish to install at https://github.com/OmniSharp
 
 3. Locate the `.vsix` file you download and click "Open".
 4. Visual Studio Code will prompt you to restart to enable the extension. Click "Restart" to confirm.
+
+#### Cleanup steps
+
+Eventually an official version of the C# extension will be released with the same version number as the beta. Be sure to uninstall your beta release at that time and reinstall the official version.
