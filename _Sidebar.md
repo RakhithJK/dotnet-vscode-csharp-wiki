@@ -1,3 +1,9 @@
+**Configuration**
+
+* [Configuring Snap installs of dotnet-sdk](https://github.com/OmniSharp/omnisharp-vscode/wiki/Configuring-Snap-installs-of-dotnet-sdk)
+* [Configuring Arch Linux for Unity development](https://github.com/OmniSharp/omnisharp-vscode/wiki/Configuring-Arch-Linux-for-Unity-development)
+* [Installing the .NET Core Debugger on Arch Linux](https://github.com/OmniSharp/omnisharp-vscode/wiki/Installing-the-.NET-Core-Debugger-on-Arch-Linux)
+
 **Debugger**
 
 * [Overview](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger.md)
