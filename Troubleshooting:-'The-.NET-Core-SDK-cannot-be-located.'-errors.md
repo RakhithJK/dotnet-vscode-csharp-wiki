@@ -62,7 +62,11 @@ Note that, as of the time of this writing, there are also other incompatibilitie
 > Did you mean to run .NET Core SDK commands? Install a .NET Core SDK from:
 > 	https://aka.ms/dotnet-download
 
-More information about this problem can be found in [dotnet/cli#12110](https://github.com/dotnet/cli/issues/12110). One of the possible workarounds is to add the following to `~/.omnisharp/omnisharp.json`.
+More information about this problem can be found in [dotnet/cli#12110](https://github.com/dotnet/cli/issues/12110).
+
+Some community members have been successful in using the Snap install by following the instructions listed in [Configuring Snap installs of dotnet-sdk](https://github.com/OmniSharp/omnisharp-vscode/wiki/Configuring-Snap-installs-of-dotnet-sdk).
+
+Another possible workaround is to add the following to `~/.omnisharp/omnisharp.json`.
 
 ```json
 {
