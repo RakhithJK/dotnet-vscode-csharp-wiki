@@ -11,3 +11,4 @@ To tell the debugger that your application is loaded in a sandbox, you need to d
 Notes:
 1. This will work in both Visual Studio and VS Code
 2. Comments are NOT supported
+3. The file must be UTF-8 encoded. A BOM is allowed but not required.
