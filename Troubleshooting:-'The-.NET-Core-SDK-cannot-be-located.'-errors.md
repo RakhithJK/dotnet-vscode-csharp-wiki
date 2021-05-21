@@ -29,7 +29,9 @@ If `which dotnet` produces no output, then this means the .NET SDK wasn't able t
 
 ## General troubleshooting steps on Windows
 
-The first step in troubleshooting this problem is to see if this problem also happens is a command prompt:
+First, as mentioned above, if you installed the .NET SDK since you last rebooted Windows, you might start by just rebooting to see if that fixes things.
+
+Otherwise, you can start troubleshooting this problem is to see if this problem also happens is a command prompt:
 
 * Start a command prompt:
     * Hit `WinKey+R` to bring up the Windows run dialog
