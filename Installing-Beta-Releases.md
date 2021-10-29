@@ -16,14 +16,14 @@ When installing a beta release, it's a good idea to remove any previous versions
 
 First, find the release that you wish to install at https://github.com/OmniSharp/omnisharp-vscode/releases. Each release will contain several `.vsix` files -- one for each supported platform. Download the `.vsix` that matches the platform you want to install:
 
-File (where 1.2.3 should be replaced with the real version number) | Platform
------|----------
-csharp-1.2.3-darwin-arm64.vsix | Apple macOS ARM64
-csharp-1.2.3-darwin-x64.vsix | Apple macOS x86_64
-csharp-1.2.3-linux-x64.vsix | Linux x86_64
-csharp-1.2.3-win32-arm64.vsix | Windows ARM64
-csharp-1.2.3-win32-x64.vsix | Windows x64
-csharp-1.2.3-win32-ia32.vsix | Windows x86 (32-bit OS, rare)
+File (where 1.2.3 should be replaced with the real version number) | OS | Processor
+--|--|--
+csharp-1.2.3-darwin-arm64.vsix | macOS | ARM-based
+csharp-1.2.3-darwin-x64.vsix | macOS | Intel-based
+csharp-1.2.3-linux-x64.vsix | Linux | x86_64
+csharp-1.2.3-win32-arm64.vsix | Windows | ARM64
+csharp-1.2.3-win32-x64.vsix | Windows | x64
+csharp-1.2.3-win32-ia32.vsix | Windows | x86 (32-bit only)
 
 Download the `.vsix` to your machine. Use the following steps to install the `.vsix` into Visual Studio Code.
 
