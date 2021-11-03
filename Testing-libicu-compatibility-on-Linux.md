@@ -7,7 +7,7 @@ This page provides information to verify that the libicu installed on your syste
 
 ## Testing
 
-1. Run: `dotnet new console -f netcoreapp2.2 -o CultureInfoTest` to create a new console app
+1. Run: `dotnet new console -f net5.0 -o CultureInfoTest` to create a new console app
 2. `cd CultureInfoTest`
 3. Replace Program.cs with the below code
 4. `dotnet run`
