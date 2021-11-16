@@ -51,6 +51,10 @@ If the result of running `where.exe` is a message like `INFO: Could not find fil
 * See if the dotnet.exe directory (example: `C:\Program Files\dotnet`) is in the list. If not you could add it.
 * If it is in the list, you could see if maybe another directory has added it self incorrectly (example: added an opening quote without a trailing quote), or if the set of environment variables has grown very large -- there is a limit of 32,767 total characters.
 
+### Note about 64-bit installs of the .NET SDK
+
+In 64-bit environments the .NET SDK will fail to be discovered if the 32-bit dotnet path comes before the 64-bit dotnet path in the Environment PATH variable. Try removing the 32-bit path entirely from your PATH variable and relaunch VS Code to see if your issue is resolved.
+
 ## Special instructions
 
 #### Linux Snap instructions
