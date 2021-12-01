@@ -22,7 +22,7 @@ If the line exists, did symbols load?
   * The PDB file is partially corrupted. Delete the file and perform a clean build of the module to try to resolve the issue. 
 * If your module is not loaded:
   * Confirm that your code is actually running. For example, add a new logging line.
-  * Confirm that the debugger is attached to your process. You can do this by adding a call to `System.Diagnostics.Debugger.IsAttached` and logging the result.
+  * Confirm that the debugger is attached to your process. You can do this by adding a call to `System.Diagnostics.Debugger.IsAttached` and logging the result. If you are attaching, you might also want to call something like `Console.WriteLine("MyProgram is running in process {0}.", Environment.ProcessId)` to list the process id and compare that to the process you are trying to debug.
 
 ### "… the current source code is different from the version built into..." 
 
