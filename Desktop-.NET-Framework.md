@@ -31,3 +31,20 @@ More information about debugging desktop .NET Framework can be found here, https
     }
 }
 ```
+
+## Forcing MSTest projects to use a 64-bit worker
+
+Some versions of MSTest will use an x86 worker process to run tests, which is not supported by the debugger. This can result in error messages like: `Unable to start program '<some-path-here>\\testhost.net472.x86.exe'. Unknown Error: 0x80131c30` or `Unable to start program '<some-path-here>\\testhost.net472.x86.exe'. The .NET debugger can only debug x64 processes.`.
+
+To fix this:
+1. Create a '.runsettings' file such as the following
+2. Add/modify a 'settings.json' file in the root of the workspace that points at the .runsettings file: `"omnisharp.testRunSettings": "C:\\My-workspace-root-here\\UseX64Worker.runsettings"`
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <TargetPlatform>x64</TargetPlatform>
+  </RunConfiguration>
+</RunSettings>
+```
