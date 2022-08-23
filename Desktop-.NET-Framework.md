@@ -6,6 +6,7 @@ For unit tests, this can be done thusly:
 1. File->Preferences->Settings
 2. Open "CSharp: Unit Test Debugging Options"
 3. Set the 'type' to 'clr' (see settings.json example below)
+4. NOTE: For MSTest projects, also see [Forcing MSTest projects to use a 64-bit worker](https://github.com/OmniSharp/omnisharp-vscode/wiki/Desktop-.NET-Framework#forcing-mstest-projects-to-use-a-64-bit-worker) section.
 
 ## launch.json example
 
