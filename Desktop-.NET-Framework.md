@@ -41,6 +41,7 @@ To fix this:
 1. Create a '.runsettings' file such as the following
 2. Add/modify a 'settings.json' file in the root of the workspace that points at the .runsettings file: `"omnisharp.testRunSettings": "C:\\My-workspace-root-here\\UseX64Worker.runsettings"`
 
+#### Example .runsettings file
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
