@@ -5,11 +5,15 @@
             "label": "build",
             "command": "dotnet",
             "type": "process",
-            "args": [ "build" ],
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "problemMatcher": "$tsc"
+            "problemMatcher": "$msCompile"
         }
     ]
 }
