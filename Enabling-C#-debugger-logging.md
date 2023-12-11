@@ -8,6 +8,8 @@ The C# debugger exposes several logging setting via a [Visual Studio Code Settin
 3. Navigate to 'Extensions->C#->Debugger' using the settings tree
 4. Enable the required setting. The most commonly used logging setting is 'Protocol Messages'.
 
+When this is enabled, logging will be sent to the VS Code Debug Console where you can copy/paste the relevant sections.
+
 ## Using launch.json
 If you have VS Code configured using a launch.json file with `"type": "coreclr"` or `"type": "clr"`, then you can configure logging using launch configuration properties. Here is an example of the new sections to add to launch.json:
 
@@ -26,7 +28,7 @@ If you have VS Code configured using a launch.json file with `"type": "coreclr"`
     ]
 ```
 
-When this is enabled, logging will be sent to the VS Code Debug Console where you can copy/paste the relevant sections.
+Just like when configured via a VS Code Setting, when this is enabled, logging will be sent to the VS Code Debug Console where you can copy/paste the relevant sections.
 
 ## Full Method
 If you are dealing with a problem that happens either very early on during debugger startup, or a problem where the debugger is crashing, it can be helpful to run the debugger (vsdbg-ui) in the console.
