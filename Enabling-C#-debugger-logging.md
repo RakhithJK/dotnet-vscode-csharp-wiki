@@ -1,35 +1,32 @@
 Here is how to enable additional logging for the VS Code C# debugger to help troubleshoot problems.
 
-## Quick Method
-The quick way to enable logging is to modify your .vscode/launch.json file and add a new 'logging' entry into your active configuration. This works in all cases except problems that happen very early in the initialization stage of the debugger. Here is an example of the new sections to add to launch.json:
+## VS Code Settings
+
+The C# debugger exposes several logging setting via a [Visual Studio Code Setting](https://code.visualstudio.com/docs/getstarted/settings). To modify them:
+1. Open up the VS Code settings editor (File->Preferences->Settings).
+2. Enter 'diagnosticsLog' into the search bar
+3. Navigate to 'Extensions->C#->Debugger' using the settings tree
+4. Enable the required setting. The most commonly used logging setting is 'Protocol Messages'.
+
+## Using launch.json
+If you have VS Code configured using a launch.json file with `"type": "coreclr"` or `"type": "clr"`, then you can configure logging using launch configuration properties. Here is an example of the new sections to add to launch.json:
 
 ```json
-"configurations": [
-    {
-        "...": "...",
-        "logging": {
-            "engineLogging": true
-        }
-    },
-    { "...": "..." }
-]
+    "configurations": [
+        {
+            "type": "coreclr",
+            "...": "...",
+            "logging": {
+                "diagnosticsLog": {
+                    "protocolMessages": true
+                }
+            }
+        },
+        { "...": "..." }
+    ]
 ```
 
 When this is enabled, logging will be sent to the VS Code Debug Console where you can copy/paste the relevant sections.
-
-## Quick Method for Unit tests
-
-Unit tests are not debugged using launch.json, so instead of editing that file, the settings.json file needs to be changed.
-
-To do so, open the command palette (View->Command Palette) and execute 'Preferences: Open Settings (JSON)'. This should open up a json file containing your user options. Add the following option:
-
-```json
-   "csharp.unitTestDebuggingOptions": {
-        "logging": {
-            "engineLogging": true
-        }
-    }
-```
 
 ## Full Method
 If you are dealing with a problem that happens either very early on during debugger startup, or a problem where the debugger is crashing, it can be helpful to run the debugger (vsdbg-ui) in the console.
