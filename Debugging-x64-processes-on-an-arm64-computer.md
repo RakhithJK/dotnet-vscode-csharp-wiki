@@ -5,7 +5,7 @@ On both ARM64 Windows and ARM64 macOS, it is possible to run .NET code in an x64
 ### Steps
 
 1. Install the ARM64 version of the .NET SDK so that the Language Service can be fully functional
-2. Obtain an x64 version of the .NET Runtime for the target process to run on top of. This can either be installed as the shared framework (see [downloads](https://dotnet.microsoft.com/en-us/download/dotnet)), or you could change build tasks to publish the target app as a self-contained application (see [documentation](https://learn.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained).
+2. Obtain an x64 version of the .NET Runtime for the target process to run on top of. This can either be installed as the shared framework (see [downloads](https://dotnet.microsoft.com/en-us/download/dotnet)), or you could change build tasks to publish the target app as a self-contained application (see [documentation](https://learn.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained)).
 3. Install the C# Extension, and optionally, the C# Dev Kit
 4. Open a folder containing code you would like to debug.
 5. If you don't already have a launch.json, generate one by opening the VS Code command pallet (press F1) and run ".NET: Generate Assets for Build and Debug"
