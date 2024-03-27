@@ -19,6 +19,7 @@
 * [[Diagnosting 'Debug adapter process has terminated unexpectedly']]
 * [[Testing libicu compatibility on Linux]]
 * [[Debugging into the .NET Framework itself]]
+* [[Debugging x64 processes on an arm64 computer]]
 
 **Documentation**
 
